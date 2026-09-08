@@ -1,0 +1,24 @@
+---
+import Layout from '../layouts/Layout.astro';
+import AdSlot from '../components/AdSlot.astro';
+import migrated from '../data/migrated.json';
+export function getStaticPaths() {
+  return migrated.map(record => ({ params: { path: record.path.replace(/^\/+|\/+$/g, '') }, props: { record } }));
+}
+const { record } = Astro.props;
+const isArticle = record.kind === 'post';
+const formatDate = (date: string) => new Intl.DateTimeFormat('pt-BR', { dateStyle: 'long', timeZone: 'America/Sao_Paulo' }).format(new Date(date));
+const related = migrated.filter(item => item.kind === 'post' && item.id !== record.id).slice(0,3);
+---
+<Layout title={record.title} seo={record.seo}>
+  <article class="document migrated-document" data-migration-id={record.id}>
+    <div class="breadcrumb"><a href="/">Início</a> / {isArticle ? 'Impressão 3D' : record.title}</div>
+    {isArticle && <span class="category">{record.categories.map(c=>c.name).join(' · ')}</span>}
+    <h1>{record.title}</h1>
+    {isArticle && <div class="migration-byline">Por <a href="/autor/">{record.author}</a><span>Publicado em <time datetime={record.date}>{formatDate(record.date)}</time></span><span>Atualizado em <time datetime={record.modified}>{formatDate(record.modified)}</time> · {record.readingMinutes} min de leitura</span></div>}
+    {record.cover && <img class="migration-cover" src={record.cover.src} alt={record.cover.alt} width={record.cover.width} height={record.cover.height} fetchpriority="high"/>}
+    <div class="wp-content" data-migrated-content set:html={record.html}/>
+    {record.emptySource && <div class="source-empty"><p>{record.path === '/home/' ? 'Explore os artigos e guias da Outlet 3D na página inicial.' : 'Para informações sobre cookies, entre em contato com a Outlet 3D.'}</p><a href={record.path === '/home/' ? '/' : 'mailto:contato@outlet3d.com.br'}>{record.path === '/home/' ? 'Ir para a página inicial →' : 'contato@outlet3d.com.br'}</a></div>}
+    {isArticle && <><AdSlot slot={import.meta.env.PUBLIC_ADSENSE_ARTICLE_SLOT}/><aside class="author-box"><strong>{record.author}</strong><p>Autor da Outlet 3D. Conteúdo sobre impressão 3D, prototipagem e fabricação aditiva.</p><a href="/autor/">Conheça o autor →</a></aside><section class="related-articles"><h2>Continue explorando</h2>{related.map(item=><a href={item.path}>{item.title} →</a>)}</section></>}
+  </article>
+</Layout>

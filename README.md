@@ -19,3 +19,17 @@ Fotos de Jakub Żerdzicki no Unsplash, carregadas externamente:
 ## Antes da publicação no domínio
 
 Revisar os artigos, informações do autor e páginas institucionais com o cliente; migrar URLs e conteúdo; escolher hospedagem estática e configurar DNS. As referências canônicas e o sitemap usam https://outlet3d.com.br.
+
+## Piloto de migração — 08/09/2026
+
+Importados os 10 posts mais recentes do inventário e as 8 páginas públicas. Dados publicados em `src/data/migrated.json`; rotas originais geradas por `src/pages/[...path].astro`; imagens mantidas em `public/wp-content/uploads/` com os mesmos caminhos. Os cinco artigos da versão inicial continuam disponíveis, mas não entram na contagem da migração.
+
+- `migration/pilot/manifest.json`: IDs, URLs, imagens e ajustes documentados.
+- `migration/pilot/source/`: fotografia dos 18 conteúdos de origem para comparação.
+- `python3 migration/pilot/validate.py`: valida o build contra essa fotografia.
+- `python3 migration/pilot/http-check.py`: valida as rotas e imagens com o servidor local em localhost:4321.
+- `migration/pilot/import.py`: importação limitada e repetível; exige os JSONs do inventário local, obtidos com `migration/audit.py`. Não amplia a seleção automaticamente.
+
+Textos e metadados foram preservados, com uma adaptação documentada no contato: substituição do shortcode quebrado pelo e-mail. Home e Cookies já estavam vazios na origem; os caminhos foram preservados com links úteis, sem inventar uma política. As informações institucionais continuam sendo as do site original e precisam de revisão antes da troca definitiva do domínio. Links para conteúdo fora do piloto continuam absolutos no site atual.
+
+O piloto cobre texto, imagem destacada, dados estruturados e páginas institucionais. Os 10 artigos selecionados não têm tabelas ou iframes; esses formatos precisam entrar numa próxima amostra antes da migração completa. A conta AdSense e o domínio de produção não foram alterados.

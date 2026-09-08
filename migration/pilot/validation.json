@@ -1,0 +1,270 @@
+{
+  "passed": true,
+  "migrated": 18,
+  "images": 13,
+  "errors": [],
+  "checks": [
+    {
+      "id": 4658,
+      "path": "/impressao-3d/como-usar-impressao-3d-para-criar-moldes-de-gesso/",
+      "checks": {
+        "text": true,
+        "canonical": true,
+        "title": true,
+        "description": true,
+        "single_h1": true,
+        "no_shortcode": true,
+        "dates": true,
+        "schema": true
+      }
+    },
+    {
+      "id": 4655,
+      "path": "/impressao-3d/impressao-3d-de-pecas-de-reposicao/",
+      "checks": {
+        "text": true,
+        "canonical": true,
+        "title": true,
+        "description": true,
+        "single_h1": true,
+        "no_shortcode": true,
+        "dates": true,
+        "schema": true
+      }
+    },
+    {
+      "id": 4652,
+      "path": "/impressao-3d/como-usar-inteligencia-artificial-para-gerar-modelos-3d-automaticos/",
+      "checks": {
+        "text": true,
+        "canonical": true,
+        "title": true,
+        "description": true,
+        "single_h1": true,
+        "no_shortcode": true,
+        "dates": true,
+        "schema": true
+      }
+    },
+    {
+      "id": 4649,
+      "path": "/impressao-3d/optimizacao-usos-suportes-impressao-3d/",
+      "checks": {
+        "text": true,
+        "canonical": true,
+        "title": true,
+        "description": true,
+        "single_h1": true,
+        "no_shortcode": true,
+        "dates": true,
+        "schema": true
+      }
+    },
+    {
+      "id": 4646,
+      "path": "/impressao-3d/impressao-3d-de-pecas-para-a-industry-de-refrigeracao/",
+      "checks": {
+        "text": true,
+        "canonical": true,
+        "title": true,
+        "description": true,
+        "single_h1": true,
+        "no_shortcode": true,
+        "dates": true,
+        "schema": true
+      }
+    },
+    {
+      "id": 4643,
+      "path": "/impressao-3d/impressao-3d-de-pecas-para-cameras/",
+      "checks": {
+        "text": true,
+        "canonical": true,
+        "title": true,
+        "description": true,
+        "single_h1": true,
+        "no_shortcode": true,
+        "dates": true,
+        "schema": true
+      }
+    },
+    {
+      "id": 4640,
+      "path": "/impressao-3d/impressao-3d-pecas-turbinas-eolicas-industria-energia/",
+      "checks": {
+        "text": true,
+        "canonical": true,
+        "title": true,
+        "description": true,
+        "single_h1": true,
+        "no_shortcode": true,
+        "dates": true,
+        "schema": true
+      }
+    },
+    {
+      "id": 4637,
+      "path": "/impressao-3d/como-usar-impressao-3d-para-criar-moldes-de-fundicao-em-areia/",
+      "checks": {
+        "text": true,
+        "canonical": true,
+        "title": true,
+        "description": true,
+        "single_h1": true,
+        "no_shortcode": true,
+        "dates": true,
+        "schema": true
+      }
+    },
+    {
+      "id": 4634,
+      "path": "/impressao-3d/impressao-3d-pecas-sistemas-irrigacao/",
+      "checks": {
+        "text": true,
+        "canonical": true,
+        "title": true,
+        "description": true,
+        "single_h1": true,
+        "no_shortcode": true,
+        "dates": true,
+        "schema": true
+      }
+    },
+    {
+      "id": 4631,
+      "path": "/impressao-3d/como-otimizar-a-superficie-na-impressao-3d/",
+      "checks": {
+        "text": true,
+        "canonical": true,
+        "title": true,
+        "description": true,
+        "single_h1": true,
+        "no_shortcode": true,
+        "dates": true,
+        "schema": true
+      }
+    },
+    {
+      "id": 2014,
+      "path": "/aviso-legal/",
+      "checks": {
+        "text": true,
+        "canonical": true,
+        "title": true,
+        "description": true,
+        "single_h1": true,
+        "no_shortcode": true,
+        "dates": true,
+        "schema": true
+      }
+    },
+    {
+      "id": 1891,
+      "path": "/termos-de-uso/",
+      "checks": {
+        "text": true,
+        "canonical": true,
+        "title": true,
+        "description": true,
+        "single_h1": true,
+        "no_shortcode": true,
+        "dates": true,
+        "schema": true
+      }
+    },
+    {
+      "id": 1886,
+      "path": "/transparencia/",
+      "checks": {
+        "text": true,
+        "canonical": true,
+        "title": true,
+        "description": true,
+        "single_h1": true,
+        "no_shortcode": true,
+        "dates": true,
+        "schema": true
+      }
+    },
+    {
+      "id": 1705,
+      "path": "/politica-de-cookies-br/",
+      "checks": {
+        "text": true,
+        "canonical": true,
+        "title": true,
+        "description": true,
+        "single_h1": true,
+        "no_shortcode": true,
+        "dates": true,
+        "schema": true
+      }
+    },
+    {
+      "id": 1597,
+      "path": "/home/",
+      "checks": {
+        "text": true,
+        "canonical": true,
+        "title": true,
+        "description": true,
+        "single_h1": true,
+        "no_shortcode": true,
+        "dates": true,
+        "schema": true
+      }
+    },
+    {
+      "id": 3,
+      "path": "/politica-de-privacidade/",
+      "checks": {
+        "text": true,
+        "canonical": true,
+        "title": true,
+        "description": true,
+        "single_h1": true,
+        "no_shortcode": true,
+        "dates": true,
+        "schema": true
+      }
+    },
+    {
+      "id": 1183,
+      "path": "/sobre/",
+      "checks": {
+        "text": true,
+        "canonical": true,
+        "title": true,
+        "description": true,
+        "single_h1": true,
+        "no_shortcode": true,
+        "dates": true,
+        "schema": true
+      }
+    },
+    {
+      "id": 1150,
+      "path": "/contato/",
+      "checks": {
+        "text": true,
+        "canonical": true,
+        "title": true,
+        "description": true,
+        "single_h1": true,
+        "no_shortcode": true,
+        "dates": true,
+        "schema": true
+      }
+    }
+  ],
+  "links_to_production_not_in_pilot": [
+    "https://outlet3d.com.br/impressao-3d/impressao-3d-como-controlar-consistencia-material/",
+    "https://outlet3d.com.br/impressao-3d/impressao-3d-de-pecas-para-a-industria-de-sinalizacao/",
+    "https://outlet3d.com.br/impressao-3d/impressao-3d-de-pecas-para-eventos-2/",
+    "https://outlet3d.com.br/impressao-3d/impressao-3d-para-producao-de-pecas-de-mobiliario-modular/",
+    "https://outlet3d.com.br/impressao-3d/impressoes-3d-em-moda-materiais-utilizados/",
+    "https://outlet3d.com.br/impressao-3d/joias-3d-vantagens-impressao/",
+    "https://outlet3d.com.br/impressao-3d/manutencao-preventiva-impressora-3d/"
+  ],
+  "fragment_warnings": []
+}

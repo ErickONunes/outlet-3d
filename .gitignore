@@ -2,3 +2,7 @@ node_modules/
 dist/
 .astro/
 .env
+# Full public audit stays local; only the bounded pilot is published.
+/migration/*.json
+/migration/*.xml
+/migration/pilot/__pycache__/
