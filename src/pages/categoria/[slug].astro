@@ -1,0 +1,7 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import {articles,categories,categorySlug,photos} from '../../data/articles';
+export function getStaticPaths(){return categories.map(category=>({params:{slug:categorySlug(category)},props:{category}}))}
+const {category}=Astro.props; const selected=articles.filter(a=>a.category===category);
+---
+<Layout title={category}><div class="page listing"><div class="breadcrumb"><a href="/">Início</a> / Explore</div><p class="eyebrow">EXPLORE O UNIVERSO 3D</p><h1>{category}</h1><p>Conhecimento e inspiração para sua próxima criação.</p><div class="articles-grid">{selected.map(a=><article><a class="article-image" href={`/artigos/${a.slug}/`}><img src={photos[a.image]} alt="Impressora 3D em funcionamento" width="800" height="550"/></a><span class="category">{a.category}</span><h3><a href={`/artigos/${a.slug}/`}>{a.title}</a></h3><p>{a.description}</p><div class="meta">Erick Nunes · {a.time} min de leitura</div></article>)}</div></div></Layout>

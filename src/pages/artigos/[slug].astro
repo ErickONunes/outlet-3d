@@ -1,0 +1,8 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import AdSlot from '../../components/AdSlot.astro';
+import {articles,photos} from '../../data/articles';
+export function getStaticPaths(){return articles.map(article=>({params:{slug:article.slug},props:{article}}))}
+const {article}=Astro.props;
+---
+<Layout title={article.title} description={article.description}><article class="document"><div class="breadcrumb"><a href="/">Início</a> / {article.category}</div><span class="category">{article.category}</span><h1>{article.title}</h1><p class="lead">{article.description}</p><div class="meta">Por <a href="/autor/">Erick Nunes</a> · {article.time} min de leitura</div><img class="cover" src={photos[article.image]} alt="Processo de impressão 3D" width="1200" height="700"/><nav aria-label="Neste artigo" style="display:block;margin:0"><strong>Neste guia</strong>{article.sections.map(([heading],i)=><a style="display:block;margin:8px 0" href={`#etapa-${i}`}>{heading}</a>)}</nav>{article.sections.map(([heading,body],i)=><section id={`etapa-${i}`}><h2>{heading}</h2><p>{body}</p></section>)}<AdSlot slot={import.meta.env.PUBLIC_ADSENSE_ARTICLE_SLOT}/><aside class="author-box"><strong>Sobre Erick Nunes</strong><p>Autor da Outlet 3D, compartilha conhecimento sobre design, prototipagem e fabricação aditiva para aproximar mais pessoas da impressão 3D.</p><a href="/autor/">Conheça o autor →</a></aside><p><a href="/">← Explore mais ideias</a></p></article></Layout>
