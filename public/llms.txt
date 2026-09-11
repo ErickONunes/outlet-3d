@@ -1,0 +1,21 @@
+# Outlet 3D
+
+> Conteúdo editorial em português sobre impressão 3D, fabricação aditiva, prototipagem, materiais, design e aplicações práticas.
+
+## Sobre
+
+- [Sobre a Outlet 3D](https://outlet3d.com.br/sobre/): missão editorial e foco do site.
+- [Erick Nunes](https://outlet3d.com.br/autor/): autor, engenheiro mecânico e especialista em fabricação aditiva.
+
+## Conteúdos principais
+
+- [Impressão 3D](https://outlet3d.com.br/categoria/impressao-3d/): guias, aplicações e tendências.
+- [Guias e tutoriais](https://outlet3d.com.br/categoria/guias-tutoriais/): conteúdo para iniciantes e criadores.
+- [Universo 3D](https://outlet3d.com.br/categoria/universo-3d/): conceitos e tecnologia.
+- [Design e criatividade](https://outlet3d.com.br/categoria/design-criatividade/): modelagem e projetos.
+
+## Contato e política editorial
+
+- E-mail: contato@outlet3d.com.br
+- [Transparência editorial](https://outlet3d.com.br/transparencia/)
+- [Política de privacidade](https://outlet3d.com.br/politica-de-privacidade/)

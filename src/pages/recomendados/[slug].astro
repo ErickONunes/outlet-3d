@@ -1,0 +1,12 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import ProductOffer from '../../components/ProductOffer.astro';
+import {products} from '../../data/products';
+import '../../styles/recommendations.css';
+import '../../styles/product-detail.css';
+import A1Details from '../../components/A1Details.astro';
+export function getStaticPaths(){return products.map(product=>({params:{slug:product.slug},props:{product}}))}
+const {product}=Astro.props;
+const available=product.status==='available' && product.affiliateUrl;
+---
+<Layout title={`${product.name} | Recomendações Outlet 3D`} description={product.summary}><main class="product-page"><section class="product-hero"><div><p class="eyebrow"><span></span> RECOMENDAÇÃO · {product.kind}</p><h1>{product.name}</h1><p>{product.summary}</p>{product.offer && <ProductOffer offer={product.offer}/>}{available ? <a class="buy-button" href={product.affiliateUrl} target="_blank" rel="noopener noreferrer sponsored">Ver oferta no Mercado Livre <span>↗</span></a> : <span class="coming-soon">Em breve</span>}</div><img src={product.image} alt={product.name} width="1000" height="800" fetchpriority="high"/></section><section class="product-content"><div><p class="eyebrow">POR QUE RECOMENDAMOS</p><h2>Do primeiro protótipo ao presente personalizado, explore novas possibilidades.</h2><p>{product.description}</p></div><aside><p class="eyebrow">IDEAL PARA</p><strong>{product.idealFor}</strong><ul>{product.highlights.map(highlight=><li>{highlight}</li>)}</ul>{available && <a class="buy-button buy-button-small" href={product.affiliateUrl} target="_blank" rel="noopener noreferrer sponsored">Ver oferta no Mercado Livre <span>↗</span></a>}</aside></section>{product.slug==='bambu-lab-a1-combo-ams-lite' && <A1Details url={product.affiliateUrl} offer={product.offer}/>}<section class="affiliate-note"><h2>Transparência em primeiro lugar.</h2><p>Este conteúdo pode conter link de afiliado. A compra é realizada no site do parceiro, em uma nova aba.</p></section></main></Layout>

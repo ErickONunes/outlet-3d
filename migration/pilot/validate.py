@@ -45,12 +45,16 @@ for r in records:
  page=parsed[f];p=source[r['id']];expected=p['content']['rendered']
  if p['id']==1150:
   expected=re.sub(r'\[contact-form-7[^\]]*\]','Enviar e-mail para contato@outlet3d.com.br',expected).replace('Basta preencher o formulário abaixo e já já te respondo!','Envie sua mensagem pelo e-mail abaixo.')
- checks={'text':visible(expected)==normal(''.join(page.content)),'canonical':page.canonical==p['link'],'title':''.join(page.titles)==r['seo']['title'],'description':page.meta.get('description')==r['seo']['description'],'single_h1':page.h1s==1,'no_shortcode':'[contact-form-7' not in f.read_text(),'dates':r['kind']!='post' or all(d in f.read_text() for d in [r['date'],r['modified']]),'schema':len([s for s in page.scripts if s['type']=='application/ld+json'])==len(r['seo']['schemas'])}
+ # Sobre e Contato receberam uma apresentação própria depois do piloto; as demais
+ # páginas continuam com o conteúdo visível comparado à fotografia de origem.
+ redesigned_page=r['path'] in {'/sobre/','/contato/'}
+ expected_schema_count=len(r['seo']['schemas'])+1+(r['kind']=='post')  # Schema original + artigo + Organization/WebSite global
+ checks={'text':redesigned_page or visible(expected)==normal(''.join(page.content)),'canonical':page.canonical==p['link'],'title':''.join(page.titles)==r['seo']['title'],'description':page.meta.get('description')==r['seo']['description'],'single_h1':page.h1s==1,'no_shortcode':'[contact-form-7' not in f.read_text(),'dates':r['kind']!='post' or all(d in f.read_text() for d in [r['date'],r['modified']]),'schema':len([s for s in page.scripts if s['type']=='application/ld+json'])==expected_schema_count}
  for script in page.scripts:
   if script['type']=='application/ld+json':json.loads(script['body'])
  for key,ok in checks.items():
   if not ok:errors.append(f'{r["path"]}: {key}')
- results.append({'id':r['id'],'path':r['path'],'checks':checks})
+ results.append({'id':r['id'],'path':r['path'],'redesigned_after_pilot':redesigned_page,'checks':checks})
 for f,p in parsed.items():
  for value in p.links+p.images:
   if not value:continue

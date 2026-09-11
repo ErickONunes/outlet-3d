@@ -1,0 +1,8 @@
+export type ProductOffer = {price:number;previousPrice?:number;advertisedDiscount?:number;seller:string;checkedAt:string;installments?:{count:number;amount:number}};
+export type Product = {slug:string;offer?:ProductOffer;name:string;kind:'Produto'|'Curso'|'Ferramenta';summary:string;description:string;image:string;affiliateUrl?:string;highlights:string[];idealFor:string;status:'available'|'coming-soon'};
+
+// Cadastre cada item com seu link de afiliado. A página interna e o botão de checkout
+// serão gerados automaticamente a partir destes dados.
+export const products: Product[] = [
+  {slug:'bambu-lab-a1-combo-ams-lite',name:'Bambu Lab A1 Combo com AMS Lite',kind:'Produto',summary:'Impressora 3D FDM com sistema AMS Lite para projetos multicoloridos e automações que simplificam o início.',description:'A Bambu Lab A1 Combo combina a impressora A1 com o AMS Lite, sistema que gerencia até quatro filamentos para trocas automáticas de cor ou material. É uma opção para quem quer reduzir a etapa de calibração e explorar projetos funcionais, decorativos e multicoloridos com mais agilidade.',image:'https://3d.nice-cdn.com/upload/image/product/large/default/47083_59cd2505.768x768.png',affiliateUrl:'https://meli.la/1rvn5G8',offer:{price:4769,previousPrice:5932,advertisedDiscount:19,seller:'Berga Eletro',checkedAt:'2026-09-11',installments:{count:12,amount:458.39}},highlights:['AMS Lite para até quatro filamentos','Volume de impressão de 256 × 256 × 256 mm','Calibrações automáticas para facilitar a preparação','Velocidade anunciada de até 500 mm/s'],idealFor:'Iniciantes exigentes, makers e criadores que querem explorar impressão multicolorida.',status:'available'}
+];

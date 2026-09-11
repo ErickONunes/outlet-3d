@@ -2,23 +2,92 @@
 import Layout from '../layouts/Layout.astro';
 import AdSlot from '../components/AdSlot.astro';
 import migrated from '../data/migrated.json';
+import '../styles/contact.css';
+import '../styles/editorial.css';
+import '../styles/migrated-post.css';
+import '../styles/migrated-hero.css';
+import '../styles/migrated-layout.css';
+import '../styles/author-card.css';
+import '../styles/institutional.css';
 export function getStaticPaths() {
   return migrated.map(record => ({ params: { path: record.path.replace(/^\/+|\/+$/g, '') }, props: { record } }));
 }
 const { record } = Astro.props;
 const isArticle = record.kind === 'post';
+const isAbout = record.path === '/sobre/';
+const isContact = record.path === '/contato/';
 const formatDate = (date: string) => new Intl.DateTimeFormat('pt-BR', { dateStyle: 'long', timeZone: 'America/Sao_Paulo' }).format(new Date(date));
 const related = migrated.filter(item => item.kind === 'post' && item.id !== record.id).slice(0,3);
+const headings = isArticle ? [...record.html.matchAll(/<h([23])[^>]*>([\s\S]*?)<\/h\1>/gi)].map((match, index) => ({ id: `secao-${index + 1}`, title: match[2].replace(/<[^>]+>/g, '').trim() })) : [];
+let headingIndex = 0;
+const renderedHtml = isArticle ? record.html.replace(/<h([23])([^>]*)>([\s\S]*?)<\/h\1>/gi, (_match, level, attributes, content) => `<h${level}${attributes} id="secao-${++headingIndex}">${content}</h${level}>`) : record.html;
+const articleSchema = isArticle ? {'@context':'https://schema.org','@type':'BlogPosting',headline:record.title,description:record.seo.description,image:record.cover ? `https://outlet3d.com.br${record.cover.src}` : undefined,datePublished:record.date,dateModified:record.modified,mainEntityOfPage:`https://outlet3d.com.br${record.path}`,author:{'@type':'Person',name:'Erick Nunes',url:'https://outlet3d.com.br/autor/'},publisher:{'@id':'https://outlet3d.com.br/#organization'},inLanguage:'pt-BR'} : undefined;
+const pageSeo = articleSchema ? {...record.seo, schemas:[...(record.seo.schemas ?? []),articleSchema]} : record.seo;
 ---
-<Layout title={record.title} seo={record.seo}>
-  <article class="document migrated-document" data-migration-id={record.id}>
-    <div class="breadcrumb"><a href="/">Início</a> / {isArticle ? 'Impressão 3D' : record.title}</div>
-    {isArticle && <span class="category">{record.categories.map(c=>c.name).join(' · ')}</span>}
-    <h1>{record.title}</h1>
-    {isArticle && <div class="migration-byline">Por <a href="/autor/">{record.author}</a><span>Publicado em <time datetime={record.date}>{formatDate(record.date)}</time></span><span>Atualizado em <time datetime={record.modified}>{formatDate(record.modified)}</time> · {record.readingMinutes} min de leitura</span></div>}
-    {record.cover && <img class="migration-cover" src={record.cover.src} alt={record.cover.alt} width={record.cover.width} height={record.cover.height} fetchpriority="high"/>}
-    <div class="wp-content" data-migrated-content set:html={record.html}/>
+<Layout title={record.title} seo={pageSeo}>
+  {isAbout ? <main class="about-page">
+    <section class="about-hero">
+      <div class="about-hero-copy">
+        <p class="eyebrow"><span></span> SOBRE A OUTLET 3D</p>
+        <h1>Ideias não foram feitas para ficar <em>na tela.</em></h1>
+        <p class="about-lead">A Outlet 3D é o ponto de encontro entre curiosidade, conhecimento e fabricação aditiva.</p>
+        <a class="about-hero-link" href="#nossa-missao">Conheça nossa missão <span>↓</span></a>
+      </div>
+      <div class="about-hero-surface" aria-hidden="true">
+        <span class="about-layer about-layer-one"></span><span class="about-layer about-layer-two"></span><span class="about-layer about-layer-three"></span>
+        <strong>3D</strong><small>CAMADA POR CAMADA</small>
+      </div>
+    </section>
+    <section class="about-statement" id="nossa-missao">
+      <p class="eyebrow">POR QUE EXISTIMOS</p>
+      <h2>Transformar a complexidade da impressão 3D em confiança para criar.</h2>
+      <p>Da primeira configuração à próxima grande ideia, reunimos guias, tendências, projetos e referências para quem quer entender, testar e colocar algo no mundo.</p>
+    </section>
+    <section class="about-pillars" aria-label="O que você encontra na Outlet 3D">
+      <article><span>01</span><h3>Aprenda</h3><p>Guias claros para dominar ferramentas, materiais e processos.</p></article>
+      <article><span>02</span><h3>Experimente</h3><p>Inspiração prática para projetos, protótipos e personalização.</p></article>
+      <article><span>03</span><h3>Construa</h3><p>Conhecimento para transformar uma ideia digital em objeto real.</p></article>
+    </section>
+    <section class="about-author">
+      <div class="about-author-image"><img src="/wp-content/uploads/2024/01/ErickNunes.webp" alt="Erick Nunes" width="512" height="512" loading="lazy"/></div>
+      <div class="about-author-copy"><p class="eyebrow">QUEM ESTÁ POR TRÁS</p><h2>Erick Nunes</h2><p class="about-role">Engenharia, tecnologia e fabricação aditiva.</p><p>Com formação em Engenharia Mecânica e experiência em pesquisa e desenvolvimento, Erick traduz o universo técnico da impressão 3D em conteúdo acessível para quem quer ir além da teoria.</p><p>Seu trabalho une design, inovação e educação para ampliar o acesso à prototipagem e à fabricação aditiva.</p><a class="about-link" href="https://www.linkedin.com/in/erickonunes/" target="_blank" rel="noopener noreferrer">Conheça Erick no LinkedIn <span>↗</span></a></div>
+    </section>
+    <section class="about-cta"><div><p class="eyebrow">A PRÓXIMA IDEIA COMEÇA AQUI</p><h2>Pronto para dar forma ao que você imagina?</h2></div><a href="/">Explorar conteúdos <span>↗</span></a></section>
+  </main> : isContact ? <main class="contact-page">
+    <section class="contact-hero">
+      <div>
+        <p class="eyebrow"><span></span> VAMOS CONVERSAR</p>
+        <h1>Sua próxima ideia merece <em>sair do papel.</em></h1>
+      </div>
+      <p>Tem uma dúvida, um projeto ou quer falar sobre uma parceria? Conte para a gente. A Outlet 3D quer ajudar você a transformar intenção em criação.</p>
+    </section>
+    <section class="contact-content">
+      <aside class="contact-aside">
+        <p class="eyebrow">CANAIS DE CONTATO</p>
+        <h2>Uma conversa pode ser o começo de algo incrível.</h2>
+        <a class="contact-email" href="mailto:contato@outlet3d.com.br">contato@outlet3d.com.br <span>↗</span></a>
+        <div class="contact-notes">
+          <div><span>01</span><p><strong>Dúvidas e sugestões</strong>Conte o que você gostaria de ver por aqui.</p></div>
+          <div><span>02</span><p><strong>Parcerias</strong>Vamos avaliar oportunidades que façam sentido para a comunidade.</p></div>
+        </div>
+      </aside>
+      <form class="contact-form" name="contato" method="post" action="mailto:contato@outlet3d.com.br" enctype="text/plain">
+        <div class="form-intro"><p class="eyebrow">ENVIE SUA MENSAGEM</p><p>Preencha os campos abaixo e retornaremos assim que possível.</p></div>
+        <div class="form-grid">
+          <label>Nome completo<input name="nome" type="text" autocomplete="name" required /></label>
+          <label>E-mail<input name="email" type="email" autocomplete="email" required /></label>
+          <label>Telefone <small>Opcional</small><input name="telefone" type="tel" autocomplete="tel" /></label>
+          <label>Assunto<select name="assunto" required><option value="" selected disabled>Selecione um assunto</option><option>Dúvida sobre impressão 3D</option><option>Sugestão de conteúdo</option><option>Parceria ou mídia</option><option>Outro assunto</option></select></label>
+          <label class="form-full">Como podemos ajudar?<textarea name="mensagem" rows="6" required placeholder="Descreva sua ideia, dúvida ou proposta."></textarea></label>
+        </div>
+        <label class="form-consent"><input name="consentimento" type="checkbox" required /><span>Concordo que meus dados sejam usados apenas para responder a esta solicitação, conforme a <a href="/politica-de-privacidade/">Política de Privacidade</a>.</span></label>
+        <button type="submit">Enviar mensagem <span>↗</span></button>
+      </form>
+    </section>
+  </main> : <article class:list={['document', 'migrated-document', { 'migrated-post': isArticle, 'institutional-page': !isArticle }]} data-migration-id={record.id}>
+    {isArticle ? <header class="migrated-post-hero"><div><div class="breadcrumb"><a href="/">Início</a> / Impressão 3D</div><span class="category">{record.categories.map(c=>c.name).join(' · ')}</span><h1>{record.title}</h1><div class="migration-byline">Por <a href="/autor/">{record.author}</a><span>Publicado em <time datetime={record.date}>{formatDate(record.date)}</time></span><span>Atualizado em <time datetime={record.modified}>{formatDate(record.modified)}</time> · {record.readingMinutes} min de leitura</span></div></div>{record.cover && <img class="migration-cover" src={record.cover.src} alt={record.cover.alt} width={record.cover.width} height={record.cover.height} fetchpriority="high"/>}</header> : <header class="institutional-hero"><div class="breadcrumb"><a href="/">Início</a> / {record.title}</div><p class="eyebrow"><span></span> OUTLET 3D · INFORMAÇÕES INSTITUCIONAIS</p><h1>{record.title}</h1><p>{record.seo.description ?? 'Informações, políticas e compromissos editoriais da Outlet 3D.'}</p></header>}
+    {isArticle ? <div class="migrated-post-layout"><aside class="post-toc"><p>NESTE GUIA</p>{headings.map((heading,index)=><a href={`#${heading.id}`}>{String(index + 1).padStart(2,'0')} <span>{heading.title}</span></a>)}</aside><div class="wp-content" data-migrated-content set:html={renderedHtml}/></div> : <div class="institutional-content"><div class="wp-content" data-migrated-content set:html={renderedHtml}/></div>}
     {record.emptySource && <div class="source-empty"><p>{record.path === '/home/' ? 'Explore os artigos e guias da Outlet 3D na página inicial.' : 'Para informações sobre cookies, entre em contato com a Outlet 3D.'}</p><a href={record.path === '/home/' ? '/' : 'mailto:contato@outlet3d.com.br'}>{record.path === '/home/' ? 'Ir para a página inicial →' : 'contato@outlet3d.com.br'}</a></div>}
-    {isArticle && <><AdSlot slot={import.meta.env.PUBLIC_ADSENSE_ARTICLE_SLOT}/><aside class="author-box"><strong>{record.author}</strong><p>Autor da Outlet 3D. Conteúdo sobre impressão 3D, prototipagem e fabricação aditiva.</p><a href="/autor/">Conheça o autor →</a></aside><section class="related-articles"><h2>Continue explorando</h2>{related.map(item=><a href={item.path}>{item.title} →</a>)}</section></>}
-  </article>
+    {isArticle && <><AdSlot slot={import.meta.env.PUBLIC_ADSENSE_ARTICLE_SLOT}/><aside class="author-box"><div class="author-box-photo"><img src="/wp-content/uploads/2024/01/ErickNunes.webp" alt="Erick Nunes" width="512" height="512" loading="lazy"/><span>EN</span></div><div><p class="eyebrow">AUTOR & ESPECIALISTA</p><strong>Erick Nunes</strong><p class="author-box-role">Engenharia mecânica · Fabricação aditiva</p><p>Erick transforma tecnologia complexa em conhecimento prático para quem quer projetar, testar e criar com impressão 3D.</p><a href="/autor/">Conheça a trajetória de Erick <span>↗</span></a></div></aside><section class="related-articles"><p class="eyebrow">CONTINUE EXPLORANDO</p><h2>Mais para a sua próxima criação.</h2>{related.map(item=><a href={item.path}>{item.title} <span>↗</span></a>)}</section></>}
+  </article>}
 </Layout>

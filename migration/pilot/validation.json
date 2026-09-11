@@ -7,6 +7,7 @@
     {
       "id": 4658,
       "path": "/impressao-3d/como-usar-impressao-3d-para-criar-moldes-de-gesso/",
+      "redesigned_after_pilot": false,
       "checks": {
         "text": true,
         "canonical": true,
@@ -21,6 +22,7 @@
     {
       "id": 4655,
       "path": "/impressao-3d/impressao-3d-de-pecas-de-reposicao/",
+      "redesigned_after_pilot": false,
       "checks": {
         "text": true,
         "canonical": true,
@@ -35,6 +37,7 @@
     {
       "id": 4652,
       "path": "/impressao-3d/como-usar-inteligencia-artificial-para-gerar-modelos-3d-automaticos/",
+      "redesigned_after_pilot": false,
       "checks": {
         "text": true,
         "canonical": true,
@@ -49,6 +52,7 @@
     {
       "id": 4649,
       "path": "/impressao-3d/optimizacao-usos-suportes-impressao-3d/",
+      "redesigned_after_pilot": false,
       "checks": {
         "text": true,
         "canonical": true,
@@ -63,6 +67,7 @@
     {
       "id": 4646,
       "path": "/impressao-3d/impressao-3d-de-pecas-para-a-industry-de-refrigeracao/",
+      "redesigned_after_pilot": false,
       "checks": {
         "text": true,
         "canonical": true,
@@ -77,6 +82,7 @@
     {
       "id": 4643,
       "path": "/impressao-3d/impressao-3d-de-pecas-para-cameras/",
+      "redesigned_after_pilot": false,
       "checks": {
         "text": true,
         "canonical": true,
@@ -91,6 +97,7 @@
     {
       "id": 4640,
       "path": "/impressao-3d/impressao-3d-pecas-turbinas-eolicas-industria-energia/",
+      "redesigned_after_pilot": false,
       "checks": {
         "text": true,
         "canonical": true,
@@ -105,6 +112,7 @@
     {
       "id": 4637,
       "path": "/impressao-3d/como-usar-impressao-3d-para-criar-moldes-de-fundicao-em-areia/",
+      "redesigned_after_pilot": false,
       "checks": {
         "text": true,
         "canonical": true,
@@ -119,6 +127,7 @@
     {
       "id": 4634,
       "path": "/impressao-3d/impressao-3d-pecas-sistemas-irrigacao/",
+      "redesigned_after_pilot": false,
       "checks": {
         "text": true,
         "canonical": true,
@@ -133,6 +142,7 @@
     {
       "id": 4631,
       "path": "/impressao-3d/como-otimizar-a-superficie-na-impressao-3d/",
+      "redesigned_after_pilot": false,
       "checks": {
         "text": true,
         "canonical": true,
@@ -147,6 +157,7 @@
     {
       "id": 2014,
       "path": "/aviso-legal/",
+      "redesigned_after_pilot": false,
       "checks": {
         "text": true,
         "canonical": true,
@@ -161,6 +172,7 @@
     {
       "id": 1891,
       "path": "/termos-de-uso/",
+      "redesigned_after_pilot": false,
       "checks": {
         "text": true,
         "canonical": true,
@@ -175,6 +187,7 @@
     {
       "id": 1886,
       "path": "/transparencia/",
+      "redesigned_after_pilot": false,
       "checks": {
         "text": true,
         "canonical": true,
@@ -189,6 +202,7 @@
     {
       "id": 1705,
       "path": "/politica-de-cookies-br/",
+      "redesigned_after_pilot": false,
       "checks": {
         "text": true,
         "canonical": true,
@@ -203,6 +217,7 @@
     {
       "id": 1597,
       "path": "/home/",
+      "redesigned_after_pilot": false,
       "checks": {
         "text": true,
         "canonical": true,
@@ -217,6 +232,7 @@
     {
       "id": 3,
       "path": "/politica-de-privacidade/",
+      "redesigned_after_pilot": false,
       "checks": {
         "text": true,
         "canonical": true,
@@ -231,6 +247,7 @@
     {
       "id": 1183,
       "path": "/sobre/",
+      "redesigned_after_pilot": true,
       "checks": {
         "text": true,
         "canonical": true,
@@ -245,6 +262,7 @@
     {
       "id": 1150,
       "path": "/contato/",
+      "redesigned_after_pilot": true,
       "checks": {
         "text": true,
         "canonical": true,

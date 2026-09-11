@@ -1,35 +1,71 @@
-# Outlet 3D — Astro
+# Outlet 3D
 
-Portal editorial estático em português. Execute `npm install` e `npm run dev`. A produção é gerada em `dist/` com `npm run build`.
+Portal editorial em português sobre impressão 3D, fabricação aditiva, prototipagem, materiais e criatividade. Desenvolvido com [Astro](https://astro.build/) para entregar páginas estáticas rápidas, indexáveis e fáceis de manter. O domínio previsto é [outlet3d.com.br](https://outlet3d.com.br/).
 
-## Conteúdo
+## O que está incluído
 
-Artigos introdutórios em `src/data/articles.ts`. Categorias e páginas são geradas estaticamente. Esta primeira versão contém cinco textos novos; não migra o acervo do WordPress. Antes de substituir o domínio atual, exporte o conteúdo existente, preserve os slugs ou configure redirecionamentos 301 e revise os textos.
+- Home editorial, categorias, artigos e páginas institucionais com identidade visual própria.
+- Piloto de migração de 10 posts e 8 páginas do WordPress, nos endereços originais.
+- Recomendações comerciais com preço, condições, transparência de afiliado e links externos seguros.
+- Dados estruturados, canonical, sitemap, `robots.txt` e `llms.txt` para SEO e mecanismos de IA.
+- Espaços prontos para AdSense, ativados somente com variáveis de ambiente válidas.
+- Formulário visual de contato; o envio precisa ser conectado a um provedor antes da publicação.
 
-## Monetização
+## Começar localmente
 
-Nenhum script AdSense foi ativado e nenhum publisher ID foi inventado. A ativação depende da conta e aprovação do cliente. Depois de configurar a conta, inserir o código oficial, identificar os espaços publicitários, publicar o ads.txt fornecido pelo Google e revisar privacidade/consentimento conforme o funcionamento real. Não há garantia de aprovação ou receita.
+Requer Node.js 20 ou superior.
 
-## Imagens
+```bash
+npm install
+npm run dev
+```
 
-Fotos de Jakub Żerdzicki no Unsplash, carregadas externamente:
-- https://unsplash.com/photos/3d-printer-creating-a-red-object-with-yellow-filament-W_SYA5yU9p8
-- https://unsplash.com/photos/a-close-up-of-a-3d-printer-machine-FED1QYdR1qI
+Abra `http://localhost:4321`. Para gerar a versão de produção:
 
-## Antes da publicação no domínio
+```bash
+npm run build
+npm run preview
+```
 
-Revisar os artigos, informações do autor e páginas institucionais com o cliente; migrar URLs e conteúdo; escolher hospedagem estática e configurar DNS. As referências canônicas e o sitemap usam https://outlet3d.com.br.
+## Estrutura
 
-## Piloto de migração — 08/09/2026
+| Caminho | Responsabilidade |
+| --- | --- |
+| `src/pages/` | Rotas Astro e páginas estáticas |
+| `src/data/` | Artigos, produtos e conteúdo migrado |
+| `src/components/` | Componentes reutilizáveis de anúncios e produto |
+| `src/layouts/Layout.astro` | SEO global, navegação, rodapé e AdSense condicional |
+| `src/styles/` | Sistema visual e estilos por tipo de página |
+| `public/branding/` | Logos da Outlet 3D |
+| `migration/` | Inventário e validação do piloto WordPress |
+| `docs/` | Operação, arquitetura, publicação e curadoria |
 
-Importados os 10 posts mais recentes do inventário e as 8 páginas públicas. Dados publicados em `src/data/migrated.json`; rotas originais geradas por `src/pages/[...path].astro`; imagens mantidas em `public/wp-content/uploads/` com os mesmos caminhos. Os cinco artigos da versão inicial continuam disponíveis, mas não entram na contagem da migração.
+## Documentação
 
-- `migration/pilot/manifest.json`: IDs, URLs, imagens e ajustes documentados.
-- `migration/pilot/source/`: fotografia dos 18 conteúdos de origem para comparação.
-- `python3 migration/pilot/validate.py`: valida o build contra essa fotografia.
-- `python3 migration/pilot/http-check.py`: valida as rotas e imagens com o servidor local em localhost:4321.
-- `migration/pilot/import.py`: importação limitada e repetível; exige os JSONs do inventário local, obtidos com `migration/audit.py`. Não amplia a seleção automaticamente.
+- [Arquitetura e conteúdo](docs/arquitetura.md)
+- [Operação editorial e SEO](docs/operacao-editorial.md)
+- [Curadoria de afiliados](docs/curadoria-afiliados.md)
+- [Publicação e checklist](docs/publicacao.md)
+- [Relatório de migração](migration/RELATORIO.md)
+- [Resultado do piloto](migration/pilot/RESULTADO.md)
 
-Textos e metadados foram preservados, com uma adaptação documentada no contato: substituição do shortcode quebrado pelo e-mail. Home e Cookies já estavam vazios na origem; os caminhos foram preservados com links úteis, sem inventar uma política. As informações institucionais continuam sendo as do site original e precisam de revisão antes da troca definitiva do domínio. Links para conteúdo fora do piloto continuam absolutos no site atual.
+## Migração WordPress
 
-O piloto cobre texto, imagem destacada, dados estruturados e páginas institucionais. Os 10 artigos selecionados não têm tabelas ou iframes; esses formatos precisam entrar numa próxima amostra antes da migração completa. A conta AdSense e o domínio de produção não foram alterados.
+O piloto preserva 18 URLs: 10 posts e 8 páginas públicas. O inventário identificou 459 artigos, 8 páginas, 165 URLs de cursos e 13 Web Stories. A migração completa não está incluída: cursos, Stories, tabelas, iframes, mídia e redirecionamentos precisam de uma fase própria de validação.
+
+Para conferir o piloto após iniciar o servidor:
+
+```bash
+python3 migration/pilot/validate.py
+python3 migration/pilot/http-check.py
+```
+
+## Monetização e privacidade
+
+Não há identificador AdSense, script de rastreamento ou formulário de envio configurado no repositório. Antes da publicação, configure os dados reais, publique `ads.txt` fornecido pelo Google e revise as páginas de privacidade, cookies, transparência e termos com responsável jurídico.
+
+Links de afiliado abrem em uma nova aba com `rel="sponsored noopener noreferrer"`. Preços são registros editoriais com data de consulta, não uma integração de preço em tempo real.
+
+## Licença
+
+Código e conteúdo reservados. Consulte o titular antes de reutilizar qualquer material deste repositório.
