@@ -5,6 +5,7 @@ import '../styles/mobile-first.css';
 import '../styles/reading-navigation.css';
 import '../styles/interactive-states.css';
 import '../styles/about-author-portfolio.css';
+import '../styles/navigation-architecture.css';
 import { categories, categorySlug } from '../data/articles';
 
 const { title = 'Impressão 3D, ideias e possibilidades', description = 'Guias, materiais e ideias criativas para transformar seus projetos com impressão 3D.' } = Astro.props;
@@ -47,7 +48,12 @@ const organizationSchema = {'@context':'https://schema.org','@graph':[{'@type':'
         <a class="logo" href="/" aria-label="Outlet 3D, início"><img src="/branding/logo-outlet-3d-black.png" alt="Outlet 3D" width="1001" height="228" /></a>
         <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="site-navigation" data-menu-toggle><span class="sr-only">Abrir menu</span><span></span><span></span><span></span></button>
         <nav id="site-navigation" aria-label="Principal" data-site-navigation>
-          <a class:list={{active:path==='/'}} href="/">Início</a><a href="/categoria/impressao-3d/">Impressão 3D</a><a href="/categoria/guias-tutoriais/">Guias & Tutoriais</a><a href="/categoria/universo-3d/">Universo 3D</a><a href="/categoria/design-criatividade/">Design & Criatividade</a><a href="/recomendados/">Recomendações</a><a href="/sobre/">Sobre</a>
+          <a class:list={{active:path==='/'}} href="/">Início</a>
+          <details class="nav-group"><summary>Aprender <span>⌄</span></summary><div class="nav-popover"><p>COMECE POR AQUI</p><a href="/categoria/guias-e-tutoriais/">Guias & Tutoriais</a><a href="/categoria/educacao-3d/">Educação 3D</a><a href="/categoria/universo-3d/">Universo 3D</a></div></details>
+          <details class="nav-group"><summary>Criar & produzir <span>⌄</span></summary><div class="nav-popover"><p>DO MODELO À PEÇA</p><a href="/categoria/impressao-3d/">Impressão 3D</a><a href="/categoria/filamento/">Filamento & Materiais</a><a href="/categoria/criacao-prototipagem/">Criação & Prototipagem</a><a href="/categoria/design-criatividade/">Design & Criatividade</a><a href="/categoria/customizacao/">Customização</a></div></details>
+          <details class="nav-group"><summary>Explorar <span>⌄</span></summary><div class="nav-popover"><p>IDEIAS E TENDÊNCIAS</p><a href="/categoria/tecnologia/">Tecnologia</a><a href="/categoria/inovacoes-3d/">Inovações 3D</a><a href="/categoria/sustentabilidade-3d/">Sustentabilidade 3D</a><a href="/categoria/eventos-comunidade/">Eventos & Comunidade</a><a href="/categorias/">Ver todos os temas <b>↗</b></a></div></details>
+          <details class="nav-group"><summary>Profissional <span>⌄</span></summary><div class="nav-popover"><p>NEGÓCIOS E ANÁLISES</p><a href="/categoria/empreendedorismo/">Empreendedorismo</a><a href="/categoria/resenhas-analises/">Resenhas & Análises</a></div></details>
+          <a href="/recomendados/">Recomendações</a><a href="/sobre/">Sobre</a>
           <a class="menu-mobile-cta" href="/artigos/primeira-impressao-3d/">Comece por aqui <span>↗</span></a>
         </nav>
         <a class="header-cta" href="/artigos/primeira-impressao-3d/">Comece por aqui <span>↗</span></a>

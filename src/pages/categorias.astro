@@ -1,0 +1,9 @@
+---
+import Layout from '../layouts/Layout.astro';
+import { allCategories, getCategoryEntries } from '../data/categoryArchive';
+import '../styles/editorial.css';
+const categorySeo={description:'Explore todas as categorias de impressão 3D da Outlet 3D: guias, filamentos, design, inovação, negócios e mais.',canonical:'https://outlet3d.com.br/categorias/'};
+const categories=allCategories.map(category=>({...category,count:getCategoryEntries(category).length})).sort((a,b)=>b.count-a.count);
+---
+<Layout title="Todos os temas de impressão 3D" seo={categorySeo}><main class="archive-page"><section class="archive-hero"><p class="eyebrow"><span></span> EXPLORE A OUTLET 3D</p><div><h1>Todos os temas.</h1><p>Encontre conteúdos para aprender, criar, escolher materiais e acompanhar o futuro da fabricação aditiva.</p></div></section><section class="archive-content"><div class="category-hub">{categories.map(category=><a href={`/categoria/${category.slug}/`}><span>{String(category.count).padStart(2,'0')} artigos</span><h2>{category.name}</h2><p>Explorar conteúdos <b>↗</b></p></a>)}</div></section></main></Layout>
+<style>.category-hub{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:#d4dff6}.category-hub>a{min-height:190px;padding:1.5rem;background:var(--surface);display:flex;flex-direction:column}.category-hub>a:hover{background:var(--navy);color:#fff}.category-hub span{color:var(--electric);font-size:.7rem;font-weight:800;letter-spacing:.08em}.category-hub h2{font-size:1.5rem;margin:auto 0 1rem}.category-hub p{font-size:.84rem;color:var(--muted)}.category-hub>a:hover p{color:#c4cee5}.category-hub b{color:var(--orange);margin-left:.5rem}@media(max-width:760px){.category-hub{grid-template-columns:1fr}.category-hub>a{min-height:150px}}</style>
