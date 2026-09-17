@@ -70,6 +70,12 @@ const organizationSchema = {'@context':'https://schema.org','@graph':[{'@type':'
       navigation?.addEventListener('click', (event) => { if (event.target.closest('a')) setMenu(false); });
       document.addEventListener('keydown', (event) => { if (event.key === 'Escape') setMenu(false); });
       window.addEventListener('resize', () => { if (window.innerWidth > 760) setMenu(false); });
+      const desktopNavigation = window.matchMedia('(min-width: 761px)');
+      document.querySelectorAll('.nav-group').forEach((group) => {
+        group.addEventListener('pointerenter', () => { if (desktopNavigation.matches) group.open = true; });
+        group.addEventListener('pointerleave', () => { if (desktopNavigation.matches) group.open = false; });
+        group.addEventListener('focusout', () => requestAnimationFrame(() => { if (desktopNavigation.matches && !group.contains(document.activeElement)) group.open = false; }));
+      });
       const aboutAuthor = document.querySelector('.about-author-copy');
       if (aboutAuthor && !aboutAuthor.querySelector('.about-portfolio-link')) {
         const portfolioLink = document.createElement('a');
