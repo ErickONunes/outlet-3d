@@ -1,0 +1,18 @@
+---
+import Layout from '../../../../layouts/Layout.astro';
+import { allCategories, getCategoryEntries, getPageCount, POSTS_PER_PAGE, type ArchiveCategory } from '../../../../data/categoryArchive';
+import '../../../../styles/editorial.css';
+import '../../../../styles/archive-cards.css';
+import '../../../../styles/pagination.css';
+
+export function getStaticPaths() {
+  return allCategories.flatMap((category) => Array.from({ length: Math.max(0, getPageCount(getCategoryEntries(category).length) - 1) }, (_, index) => ({ params: { slug: category.slug, page: String(index + 2) }, props: { category, currentPage: index + 2 } })));
+}
+const { category, currentPage } = Astro.props as { category: ArchiveCategory; currentPage: number };
+const allEntries = getCategoryEntries(category);
+const pageCount = getPageCount(allEntries.length);
+const entries = allEntries.slice((currentPage - 1) * POSTS_PER_PAGE, currentPage * POSTS_PER_PAGE);
+const url = `https://outlet3d.com.br/categoria/${category.slug}/pagina/${currentPage}/`;
+const categorySeo = { description: `Página ${currentPage} de ${pageCount}: artigos sobre ${category.name} na Outlet 3D.`, canonical: url, schemas: [{ '@context': 'https://schema.org', '@type': 'CollectionPage', name: `${category.name} — página ${currentPage}`, url, inLanguage: 'pt-BR', mainEntity: { '@type': 'ItemList', numberOfItems: entries.length, itemListElement: entries.map((entry, index) => ({ '@type': 'ListItem', position: (currentPage - 1) * POSTS_PER_PAGE + index + 1, url: `https://outlet3d.com.br${entry.path}`, name: entry.title })) } }] };
+---
+<Layout title={`${category.name} — página ${currentPage} | Outlet 3D`} seo={categorySeo}><main class="archive-page"><section class="archive-hero archive-hero-compact"><p class="eyebrow"><span></span> ARQUIVO OUTLET 3D</p><div><h1>{category.name}</h1><p>Conteúdo para entender melhor, criar com mais confiança e descobrir novas possibilidades na impressão 3D.</p></div><span class="archive-count">{String(allEntries.length).padStart(2,'0')}<small>ARTIGOS</small></span></section><section class="archive-content"><div class="archive-toolbar"><p>Página {currentPage} de {pageCount} · Conteúdos selecionados para a sua próxima camada.</p><a href={`/categoria/${category.slug}/`}>← Ver início da categoria</a></div><div class="archive-grid">{entries.map((entry,index)=><article class="archive-card"><a class="archive-image" href={entry.path}>{entry.cover ? <img src={entry.cover.src} alt={entry.cover.alt} width={entry.cover.width} height={entry.cover.height} loading={index===0?'eager':'lazy'}/> : <span class="archive-image-placeholder" aria-hidden="true">OUTLET 3D</span>}<span>↗</span></a><div><p class="category">{entry.category}</p><h2><a href={entry.path}>{entry.title}</a></h2><p>{entry.description}</p><div class="archive-meta">{entry.author} <span>· {entry.time} min de leitura</span></div></div></article>)}</div><nav class="archive-pagination" aria-label="Paginação de artigos"><a class="pagination-next pagination-previous" href={currentPage===2?`/categoria/${category.slug}/`:`/categoria/${category.slug}/pagina/${currentPage-1}/`}><span>←</span> Anterior</a><span>Página {currentPage} de {pageCount}</span>{Array.from({length:pageCount},(_,index)=><a class:list={{current:index+1===currentPage}} href={index===0?`/categoria/${category.slug}/`:`/categoria/${category.slug}/pagina/${index+1}/`} aria-current={index+1===currentPage?'page':undefined}>{index+1}</a>)}{currentPage < pageCount && <a class="pagination-next" href={`/categoria/${category.slug}/pagina/${currentPage+1}/`}>Próxima <span>→</span></a>}</nav></section></main></Layout>
