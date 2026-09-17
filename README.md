@@ -51,9 +51,17 @@ npm run preview
 
 ## Migração WordPress
 
-O piloto preserva 18 URLs: 10 posts e 8 páginas públicas. O inventário identificou 459 artigos, 8 páginas, 165 URLs de cursos e 13 Web Stories. A migração completa não está incluída: cursos, Stories, tabelas, iframes, mídia e redirecionamentos precisam de uma fase própria de validação.
+Foram importados os 459 posts públicos e as 8 páginas públicas da API WordPress, preservando os 467 caminhos de origem. As 15 categorias identificadas foram geradas como arquivos locais. O acervo usa 518 imagens locais; uma URL de imagem de origem devolveu 404 e foi registrada no manifesto sem deixar link quebrado no conteúdo.
 
-Para conferir o piloto após iniciar o servidor:
+Os 165 cursos e 13 Web Stories detectados apenas por sitemap não entram nesta etapa: o conteúdo completo deles não foi exposto na API auditada e exige uma importação específica. Não houve alteração no WordPress de produção.
+
+Para validar o acervo completo após gerar o build:
+
+```bash
+python3 migration/validate-all.py
+```
+
+O piloto histórico continua disponível para auditoria:
 
 ```bash
 python3 migration/pilot/validate.py

@@ -13,6 +13,15 @@
 - [Guias e tutoriais](https://outlet3d.com.br/categoria/guias-tutoriais/): conteúdo para iniciantes e criadores.
 - [Universo 3D](https://outlet3d.com.br/categoria/universo-3d/): conceitos e tecnologia.
 - [Design e criatividade](https://outlet3d.com.br/categoria/design-criatividade/): modelagem e projetos.
+- [Filamento](https://outlet3d.com.br/categoria/filamento/): materiais, compatibilidade e aplicações.
+- [Criação e prototipagem](https://outlet3d.com.br/categoria/criacao-prototipagem/): desenvolvimento de peças e protótipos.
+- [Educação 3D](https://outlet3d.com.br/categoria/educacao-3d/): aprendizagem, cursos e uso educacional.
+- [Inovações 3D](https://outlet3d.com.br/categoria/inovacoes-3d/): avanços e aplicações emergentes.
+- [Tecnologia](https://outlet3d.com.br/categoria/tecnologia/): processos, materiais e tecnologias de fabricação aditiva.
+
+## Uso do conteúdo
+
+Os artigos identificam autor, data de publicação e atualização, categoria e URL canônica. Para informações técnicas, consulte as fontes citadas dentro de cada artigo e considere a data de atualização. Recomendações comerciais identificam links de afiliado e registram a data de consulta de preço.
 
 ## Contato e política editorial
 

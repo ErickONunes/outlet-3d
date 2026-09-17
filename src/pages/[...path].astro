@@ -17,12 +17,16 @@ const isArticle = record.kind === 'post';
 const isAbout = record.path === '/sobre/';
 const isContact = record.path === '/contato/';
 const formatDate = (date: string) => new Intl.DateTimeFormat('pt-BR', { dateStyle: 'long', timeZone: 'America/Sao_Paulo' }).format(new Date(date));
-const related = migrated.filter(item => item.kind === 'post' && item.id !== record.id).slice(0,3);
+const related = migrated.filter(item => item.kind === 'post' && item.id !== record.id && item.categories.some((category:any)=>record.categories.some((current:any)=>current.slug===category.slug))).slice(0,3);
 const headings = isArticle ? [...record.html.matchAll(/<h([23])[^>]*>([\s\S]*?)<\/h\1>/gi)].map((match, index) => ({ id: `secao-${index + 1}`, title: match[2].replace(/<[^>]+>/g, '').trim() })) : [];
 let headingIndex = 0;
 const renderedHtml = isArticle ? record.html.replace(/<h([23])([^>]*)>([\s\S]*?)<\/h\1>/gi, (_match, level, attributes, content) => `<h${level}${attributes} id="secao-${++headingIndex}">${content}</h${level}>`) : record.html;
-const articleSchema = isArticle ? {'@context':'https://schema.org','@type':'BlogPosting',headline:record.title,description:record.seo.description,image:record.cover ? `https://outlet3d.com.br${record.cover.src}` : undefined,datePublished:record.date,dateModified:record.modified,mainEntityOfPage:`https://outlet3d.com.br${record.path}`,author:{'@type':'Person',name:'Erick Nunes',url:'https://outlet3d.com.br/autor/'},publisher:{'@id':'https://outlet3d.com.br/#organization'},inLanguage:'pt-BR'} : undefined;
-const pageSeo = articleSchema ? {...record.seo, schemas:[...(record.seo.schemas ?? []),articleSchema]} : record.seo;
+const stripHtml = (value:string) => value.replace(/<[^>]+>/g,' ').replace(/\s+/g,' ').trim();
+const faqSection = isArticle ? record.html.match(/<h2[^>]*>[^<]*FAQ[^<]*<\/h2>([\s\S]*?)(?=<h2|$)/i)?.[1] ?? '' : '';
+const faqItems = [...faqSection.matchAll(/<h3[^>]*>([\s\S]*?)<\/h3>\s*<p[^>]*>([\s\S]*?)<\/p>/gi)].map(match=>({question:stripHtml(match[1]),answer:stripHtml(match[2])})).filter(item=>item.question&&item.answer);
+const faqSchema = faqItems.length ? {'@context':'https://schema.org','@type':'FAQPage',mainEntity:faqItems.map(item=>({'@type':'Question',name:item.question,acceptedAnswer:{'@type':'Answer',text:item.answer}}))} : undefined;
+const articleSchema = isArticle ? {'@context':'https://schema.org','@type':'BlogPosting',headline:record.title,description:record.seo.description,image:record.cover ? `https://outlet3d.com.br${record.cover.src}` : undefined,datePublished:record.date,dateModified:record.modified,mainEntityOfPage:`https://outlet3d.com.br${record.path}`,author:{'@type':'Person',name:record.author,url:'https://outlet3d.com.br/autor/'},publisher:{'@id':'https://outlet3d.com.br/#organization'},articleSection:record.categories.map((category:any)=>category.name),wordCount:record.html.replace(/<[^>]+>/g,' ').trim().split(/\s+/).length,inLanguage:'pt-BR',isAccessibleForFree:true} : undefined;
+const pageSeo = articleSchema ? {...record.seo, schemas:[...(record.seo.schemas ?? []),articleSchema,...(faqSchema?[faqSchema]:[])]} : record.seo;
 ---
 <Layout title={record.title} seo={pageSeo}>
   {isAbout ? <main class="about-page">
