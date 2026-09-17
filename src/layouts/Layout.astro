@@ -72,8 +72,13 @@ const organizationSchema = {'@context':'https://schema.org','@graph':[{'@type':'
       window.addEventListener('resize', () => { if (window.innerWidth > 760) setMenu(false); });
       const desktopNavigation = window.matchMedia('(min-width: 761px)');
       document.querySelectorAll('.nav-group').forEach((group) => {
-        group.addEventListener('pointerenter', () => { if (desktopNavigation.matches) group.open = true; });
-        group.addEventListener('pointerleave', () => { if (desktopNavigation.matches) group.open = false; });
+        let closeTimer;
+        const keepOpen = () => { window.clearTimeout(closeTimer); if (desktopNavigation.matches) group.open = true; };
+        const closeLater = () => { if (desktopNavigation.matches) closeTimer = window.setTimeout(() => { group.open = false; }, 220); };
+        group.addEventListener('pointerenter', keepOpen);
+        group.addEventListener('pointerleave', closeLater);
+        group.querySelector('.nav-popover')?.addEventListener('pointerenter', keepOpen);
+        group.querySelector('.nav-popover')?.addEventListener('pointerleave', closeLater);
         group.addEventListener('focusout', () => requestAnimationFrame(() => { if (desktopNavigation.matches && !group.contains(document.activeElement)) group.open = false; }));
       });
       const aboutAuthor = document.querySelector('.about-author-copy');
