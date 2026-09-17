@@ -70,7 +70,12 @@ const organizationSchema = {'@context':'https://schema.org','@graph':[{'@type':'
         portfolioLink.className = 'about-portfolio-link';
         portfolioLink.href = '/autor/';
         portfolioLink.innerHTML = 'Ver portfólio de Erick <span>↗</span>';
-        aboutAuthor.append(portfolioLink);
+        const linkedinLink = aboutAuthor.querySelector('.about-link');
+        const actions = document.createElement('div');
+        actions.className = 'about-author-actions';
+        linkedinLink?.before(actions);
+        if (linkedinLink) actions.append(linkedinLink);
+        actions.append(portfolioLink);
       }
     </script>
   </body>
