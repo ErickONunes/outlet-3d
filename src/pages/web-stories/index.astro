@@ -1,0 +1,7 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import { webStories } from '../../data/webStories';
+import '../../styles/web-stories.css';
+const seo = { description: 'Web Stories da Outlet 3D: guias visuais rápidos sobre impressão 3D, materiais e projetos.', canonical: 'https://outlet3d.com.br/web-stories/' };
+---
+<Layout title="Web Stories" seo={seo}><main class="stories-index"><section class="stories-hero"><p class="eyebrow"><span></span> HISTÓRIAS VISUAIS</p><h1>Ideias 3D para explorar em <em>minutos.</em></h1><p>Guias visuais curtos para aprender, testar e seguir para conteúdos mais profundos.</p></section><section class="stories-grid" aria-label="Web Stories">{webStories.map(story => <article><a href={`/web-stories/${story.slug}/`}><img src={story.image} alt="" width="640" height="853" loading="lazy"/><span>{story.category}</span><h2>{story.title}</h2><b>Ver Story <i>↗</i></b></a></article>)}</section></main></Layout>
