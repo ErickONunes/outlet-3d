@@ -1,0 +1,12 @@
+---
+import Layout from '../layouts/Layout.astro';
+import LegalPage from '../components/LegalPage.astro';
+const sections = [
+  { title: 'Aceitação e finalidade', body: ['Ao navegar na Outlet 3D, você concorda com estes Termos de Uso e com as políticas vinculadas nesta página. O site é uma plataforma editorial dedicada a conteúdo sobre impressão 3D e fabricação aditiva.'] },
+  { title: 'Uso permitido', body: ['Você pode acessar e compartilhar links para os conteúdos para fins pessoais e informativos. Não é permitido explorar o site de forma que prejudique sua segurança, disponibilidade, direitos autorais, marcas ou direitos de terceiros.'] },
+  { title: 'Conteúdo e decisões técnicas', body: ['Os materiais têm caráter educativo. Antes de aplicar instruções, confirmar uma compra ou executar um projeto, avalie a compatibilidade com o seu equipamento e siga as orientações de segurança e do fabricante.'] },
+  { title: 'Links e recomendações', body: ['O site pode apontar para páginas de parceiros e lojas externas. Essas páginas possuem regras próprias e a compra, entrega, garantia e atendimento são responsabilidade do respectivo fornecedor. Saiba mais na <a href="/transparencia/">página de Transparência</a>.'] },
+  { title: 'Propriedade intelectual e atualizações', body: ['O conteúdo próprio da Outlet 3D é protegido por direitos autorais. Estes termos podem ser atualizados para refletir mudanças legais ou operacionais; a versão desta página será sempre a referência vigente.'] },
+];
+---
+<Layout title="Termos de Uso" seo={{ description: 'Termos de Uso da Outlet 3D para navegação, conteúdo e recomendações.', canonical: 'https://outlet3d.com.br/termos-de-uso/' }}><LegalPage title="Termos de Uso" eyebrow="REGRAS DE NAVEGAÇÃO" lead="Condições simples para usar, compartilhar e aproveitar o conteúdo da Outlet 3D." sections={sections} /></Layout>

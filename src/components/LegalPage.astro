@@ -1,0 +1,27 @@
+---
+import '../styles/institutional.css';
+import '../styles/legal-pages.css';
+
+interface Section { title: string; body: string[]; }
+interface Props { title: string; lead: string; eyebrow: string; sections: Section[]; updated?: string; }
+const { title, lead, eyebrow, sections, updated = '17 de setembro de 2026' } = Astro.props;
+const slug = title.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '').replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '');
+---
+
+<main class="institutional-page legal-page">
+  <header class="institutional-hero">
+    <div class="breadcrumb"><a href="/">Início</a> / {title}</div>
+    <p class="eyebrow"><span></span> {eyebrow}</p>
+    <h1>{title}</h1>
+    <p>{lead}</p>
+  </header>
+  <div class="institutional-content legal-content">
+    <nav class="legal-index" aria-label={`Índice de ${title}`}>
+      <p class="eyebrow">NESTA PÁGINA</p>
+      {sections.map((section, index) => <a href={`#${slug}-${index + 1}`}><span>{String(index + 1).padStart(2, '0')}</span>{section.title}</a>)}
+    </nav>
+    {sections.map((section, index) => <section id={`${slug}-${index + 1}`}><h2>{section.title}</h2>{section.body.map(paragraph => <p set:html={paragraph}/>)}</section>)}
+    <aside class="legal-contact"><p class="eyebrow">FALE CONOSCO</p><h2>Dúvidas sobre esta página?</h2><p>Entre em contato e informe qual política ou solicitação você deseja tratar.</p><a href="mailto:contato@outlet3d.com.br">contato@outlet3d.com.br <span>↗</span></a></aside>
+    <p class="legal-updated"><strong>Última atualização:</strong> {updated}.</p>
+  </div>
+</main>

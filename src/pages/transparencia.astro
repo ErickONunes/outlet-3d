@@ -1,0 +1,11 @@
+---
+import Layout from '../layouts/Layout.astro';
+import LegalPage from '../components/LegalPage.astro';
+const sections = [
+  { title: 'Como produzimos o conteúdo', body: ['A Outlet 3D publica guias, análises, inspirações e notícias sobre impressão 3D e fabricação aditiva. Buscamos fontes confiáveis, experiência prática e revisão editorial para construir materiais claros e úteis.', 'O conteúdo tem finalidade informativa. Sempre que uma informação depender de especificações de fabricante, preço, disponibilidade ou norma técnica, recomendamos a confirmação na fonte original.'] },
+  { title: 'Recomendações e links de afiliados', body: ['Algumas recomendações podem conter links de afiliados. Se você comprar por um desses links, a Outlet 3D poderá receber uma comissão, sem acréscimo no valor da sua compra.', 'A comissão não determina a publicação de uma recomendação. Identificamos relações comerciais de forma clara e preservamos a liberdade editorial para apontar limites, compatibilidades e alternativas.'] },
+  { title: 'Publicidade', body: ['O site está preparado para exibir publicidade. Quando anúncios forem ativados, eles serão identificados como publicidade e as tecnologias opcionais serão tratadas conforme a <a href="/politica-de-cookies-br/">Política de Cookies</a>.'] },
+  { title: 'Atualizações e correções', body: ['Tecnologia muda rapidamente. Se um conteúdo precisar de correção ou atualização relevante, podemos revisá-lo e indicar a data de atualização na própria página. Você também pode enviar observações para <a href="mailto:contato@outlet3d.com.br">contato@outlet3d.com.br</a>.'] },
+];
+---
+<Layout title="Transparência editorial" seo={{ description: 'Entenda como a Outlet 3D produz conteúdo, indica produtos e identifica relações comerciais.', canonical: 'https://outlet3d.com.br/transparencia/' }}><LegalPage title="Transparência" eyebrow="COMPROMISSO EDITORIAL" lead="Informação clara sobre como criamos conteúdo, recomendações e relações comerciais." sections={sections} /></Layout>

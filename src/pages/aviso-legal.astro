@@ -1,0 +1,12 @@
+---
+import Layout from '../layouts/Layout.astro';
+import LegalPage from '../components/LegalPage.astro';
+const sections = [
+  { title: 'Finalidade do conteúdo', body: ['A Outlet 3D oferece conteúdo editorial e educativo sobre impressão 3D, design, materiais, equipamentos e fabricação aditiva. Ele não substitui avaliação técnica, profissional, médica, jurídica, financeira ou de segurança aplicável ao seu caso.'] },
+  { title: 'Uso por sua conta e risco', body: ['Procedimentos, parâmetros de impressão e recomendações de materiais devem ser testados conforme o seu equipamento, ambiente e projeto. Verifique manuais, compatibilidades e orientações de segurança do fabricante antes de executar qualquer projeto.'] },
+  { title: 'Produtos e serviços de terceiros', body: ['Preços, estoque, prazos, garantias e condições de compra mostrados em links externos pertencem aos respectivos fornecedores e podem mudar sem aviso. A Outlet 3D não processa pagamentos e não controla a entrega ou o atendimento desses parceiros.'] },
+  { title: 'Propriedade intelectual', body: ['Textos, identidade visual e materiais próprios da Outlet 3D são protegidos por direitos autorais. O compartilhamento de links é bem-vindo. A reprodução substancial, distribuição ou uso comercial exige autorização prévia por escrito, salvo quando houver indicação de licença específica.'] },
+  { title: 'Links externos e mudanças', body: ['Links são fornecidos para facilitar a pesquisa do leitor e não representam controle ou responsabilidade sobre sites de terceiros. Este aviso pode ser atualizado quando houver mudanças relevantes na operação do site ou na legislação aplicável.'] },
+];
+---
+<Layout title="Aviso Legal" seo={{ description: 'Aviso legal sobre o uso dos conteúdos, links e recomendações da Outlet 3D.', canonical: 'https://outlet3d.com.br/aviso-legal/' }}><LegalPage title="Aviso Legal" eyebrow="USO RESPONSÁVEL DO CONTEÚDO" lead="Informações importantes sobre os limites e a utilização dos materiais publicados pela Outlet 3D." sections={sections} /></Layout>
