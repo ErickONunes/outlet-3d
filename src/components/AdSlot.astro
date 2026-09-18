@@ -1,5 +1,6 @@
 ---
-// Render only after configuring valid IDs and reviewing consent requirements.
+// Auto ads run from the site-wide AdSense script. This component is reserved for
+// an optional, manually created AdSense display unit once its slot ID is set.
 const {slot}=Astro.props;
 const client=import.meta.env.PUBLIC_ADSENSE_CLIENT;
 const enabled=import.meta.env.PUBLIC_ADSENSE_ENABLED==='true' && /^ca-pub-\d{16}$/.test(client || '') && /^\d+$/.test(slot || '');

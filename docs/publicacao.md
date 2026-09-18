@@ -20,6 +20,10 @@ O diretório `dist/`, criado por `npm run build`, pode ser publicado em Cloudfla
 
 Não inclua chaves privadas, senhas ou tokens em arquivos `PUBLIC_*`: esses valores podem ser entregues ao navegador.
 
+## Google AdSense
+
+O site publica `ads.txt` na raiz e carrega o script global do AdSense em produção com o ID do editor aprovado. A exibição automática é controlada pelo painel do AdSense. Para inserir uma unidade manual em artigos, crie uma unidade de anúncio no painel, informe seu ID numérico em `PUBLIC_ADSENSE_ARTICLE_SLOT` e faça um novo deploy. Revise também a política de cookies e os requisitos de consentimento aplicáveis ao público do site antes de ativar anúncios personalizados.
+
 ## Antes de apontar o domínio
 
 1. Execute `npm run build` sem erros.
