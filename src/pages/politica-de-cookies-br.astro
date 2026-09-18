@@ -1,0 +1,99 @@
+---
+import Layout from '../layouts/Layout.astro';
+import '../styles/institutional.css';
+import '../styles/cookies-policy.css';
+
+const seo = {
+  description: 'Saiba como a Outlet 3D utiliza cookies, quais são suas escolhas e como gerenciar suas preferências.',
+  canonical: 'https://outlet3d.com.br/politica-de-cookies-br/',
+  schemas: [{
+    '@context': 'https://schema.org',
+    '@type': 'WebPage',
+    name: 'Política de Cookies | Outlet 3D',
+    description: 'Política de Cookies da Outlet 3D.',
+    dateModified: '2026-09-17',
+    inLanguage: 'pt-BR',
+  }],
+};
+---
+
+<Layout title="Política de Cookies" seo={seo}>
+  <main class="institutional-page cookie-policy-page">
+    <header class="institutional-hero">
+      <div class="breadcrumb"><a href="/">Início</a> / Política de Cookies</div>
+      <p class="eyebrow"><span></span> TRANSPARÊNCIA E CONTROLE</p>
+      <h1>Política de Cookies</h1>
+      <p>Entenda quais tecnologias podem ser usadas na Outlet 3D, para que servem e como você mantém o controle sobre suas escolhas.</p>
+    </header>
+
+    <div class="institutional-content">
+      <div class="cookie-status">
+        <p class="eyebrow">SITUAÇÃO ATUAL DO SITE</p>
+        <h2>Cookies opcionais estão desativados.</h2>
+        <p>Nesta versão da Outlet 3D, não ativamos cookies opcionais de análise ou publicidade. Caso recursos como medição de audiência ou anúncios personalizados sejam ativados, apresentaremos uma escolha clara antes de armazenar esses cookies no seu dispositivo.</p>
+      </div>
+
+      <section>
+        <h2>1. O que são cookies?</h2>
+        <p>Cookies são pequenos arquivos que um site pode salvar no seu navegador ou dispositivo. Eles ajudam uma página a funcionar, lembrar escolhas e, quando autorizados, entender como o conteúdo é usado ou exibir publicidade mais relevante.</p>
+        <p>Nem todo cookie tem a mesma finalidade. Por isso, a Outlet 3D separa as tecnologias necessárias das opcionais e explica o papel de cada uma abaixo.</p>
+      </section>
+
+      <section>
+        <h2>2. Como a Outlet 3D usa cookies</h2>
+        <div class="cookie-table-wrap" role="region" aria-label="Categorias de cookies" tabindex="0">
+          <table class="cookie-table">
+            <thead><tr><th>Categoria</th><th>Finalidade</th><th>Situação atual</th></tr></thead>
+            <tbody>
+              <tr><td><strong>Necessários</strong></td><td>Viabilizam recursos técnicos e a segurança da navegação, somente quando indispensáveis.</td><td>Podem ser usados de forma limitada, se necessários à entrega do site.</td></tr>
+              <tr><td><strong>Funcionais</strong></td><td>Guardam preferências, como idioma ou ajustes de visualização.</td><td>Não utilizados no momento.</td></tr>
+              <tr><td><strong>Análise</strong></td><td>Ajudam a compreender, de forma agregada, quais conteúdos são mais úteis.</td><td>Não utilizados no momento.</td></tr>
+              <tr><td><strong>Publicidade</strong></td><td>Permitem medir campanhas e exibir anúncios, inclusive por parceiros como o Google AdSense.</td><td>Não utilizados no momento.</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <section>
+        <h2>3. Links de afiliados e sites de terceiros</h2>
+        <p>Alguns conteúdos poderão indicar produtos em lojas parceiras, como Mercado Livre, Amazon e Shopee. Esses links levam você para ambientes externos. A partir desse acesso, os cookies e dados tratados passam a seguir as políticas do respectivo parceiro.</p>
+        <p>A existência de um link de afiliado não muda o preço que você paga. Quando houver relação comercial, a identificação será apresentada de maneira clara, conforme a nossa <a href="/transparencia/">página de transparência</a>.</p>
+      </section>
+
+      <section>
+        <h2>4. Como controlar suas preferências</h2>
+        <p>Você pode apagar, bloquear ou limitar cookies diretamente nas configurações do seu navegador. Os caminhos variam por navegador, mas normalmente ficam em Privacidade, Segurança ou Dados de navegação.</p>
+        <ul class="cookie-steps">
+          <li><span>01</span><div><strong>Revise os cookies salvos</strong><p>Veja quais dados foram armazenados e remova os que não deseja manter.</p></div></li>
+          <li><span>02</span><div><strong>Bloqueie categorias opcionais</strong><p>Escolha limitar cookies de publicidade e análise quando preferir uma navegação mais restrita.</p></div></li>
+          <li><span>03</span><div><strong>Volte a qualquer momento</strong><p>Quando o gerenciador de preferências for ativado no site, você poderá revisar a decisão sem precisar aceitar tudo novamente.</p></div></li>
+        </ul>
+        <p>O bloqueio de cookies estritamente necessários pode afetar recursos básicos de alguns sites.</p>
+      </section>
+
+      <section>
+        <h2>5. Como será o consentimento para cookies opcionais</h2>
+        <p>Antes de ativar tecnologias opcionais, a Outlet 3D adotará um painel de preferências com opções equivalentes para aceitar, recusar ou personalizar o uso de cookies. A escolha será registrada e poderá ser alterada pelo visitante a qualquer momento.</p>
+        <p>Também atualizaremos esta política com os fornecedores envolvidos, a finalidade de cada tecnologia e o período de retenção aplicável.</p>
+      </section>
+
+      <section>
+        <h2>6. Seus dados e seus canais de contato</h2>
+        <p>Para saber como tratamos dados pessoais, consulte a <a href="/politica-de-privacidade/">Política de Privacidade</a>. Em caso de dúvidas sobre esta política ou sobre suas escolhas, escreva para <a href="mailto:contato@outlet3d.com.br">contato@outlet3d.com.br</a> ou use a <a href="/contato/">página de contato</a>.</p>
+      </section>
+
+      <section>
+        <h2>7. Atualizações desta política</h2>
+        <p>Podemos atualizar este documento quando houver mudanças no site, em seus parceiros ou na legislação aplicável. A versão publicada nesta página é a referência mais atual.</p>
+        <p class="cookie-updated"><strong>Última atualização:</strong> 17 de setembro de 2026.</p>
+      </section>
+
+      <aside class="cookie-reference">
+        <p class="eyebrow">REFERÊNCIA</p>
+        <h2>Prática guiada por transparência.</h2>
+        <p>Esta página segue os princípios de transparência, finalidade e controle do titular descritos no guia orientativo da Autoridade Nacional de Proteção de Dados.</p>
+        <a href="https://www.gov.br/anpd/pt-br/centrais-de-conteudo/materiais-educativos-e-publicacoes/guia_orientativo_cookies_e_protecao_de_dados_pessoais" target="_blank" rel="noopener noreferrer">Consultar guia da ANPD <span>↗</span></a>
+      </aside>
+    </div>
+  </main>
+</Layout>

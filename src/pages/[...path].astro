@@ -10,7 +10,7 @@ import '../styles/migrated-layout.css';
 import '../styles/author-card.css';
 import '../styles/institutional.css';
 export function getStaticPaths() {
-  return migrated.map(record => ({ params: { path: record.path.replace(/^\/+|\/+$/g, '') }, props: { record } }));
+  return migrated.filter(record => record.path !== '/politica-de-cookies-br/').map(record => ({ params: { path: record.path.replace(/^\/+|\/+$/g, '') }, props: { record } }));
 }
 const { record } = Astro.props;
 const isArticle = record.kind === 'post';
