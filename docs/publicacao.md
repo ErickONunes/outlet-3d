@@ -24,7 +24,7 @@ Não inclua chaves privadas, senhas ou tokens em arquivos `PUBLIC_*`: esses valo
 
 1. Execute `npm run build` sem erros.
 2. Teste home, artigos, categorias, páginas institucionais e recomendações em desktop e celular.
-3. Valide as 18 URLs do piloto e confirme que não existem links quebrados.
+3. Valide as 5 Web Stories do piloto, os artigos, as categorias e confirme que não existem links quebrados.
 4. Configure redirecionamentos 301 para qualquer URL que mudar. Não substitua URLs antigas por páginas genéricas.
 5. Revise autor, contato, privacidade, cookies, termos, transparência, imagens e direitos de uso.
 6. Configure Search Console, Analytics e AdSense somente com IDs do cliente e consentimento aplicável.
