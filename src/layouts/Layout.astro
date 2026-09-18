@@ -16,6 +16,8 @@ const documentDescription = seo ? seo.description : description;
 const canonical = seo?.canonical ?? new URL(path, 'https://outlet3d.com.br').href;
 const adClient = import.meta.env.PUBLIC_ADSENSE_CLIENT;
 const adsEnabled = import.meta.env.PUBLIC_ADSENSE_ENABLED === 'true' && /^ca-pub-\d{16}$/.test(adClient || '');
+const gaMeasurementId = import.meta.env.PUBLIC_GA_MEASUREMENT_ID;
+const analyticsEnabled = /^G-[A-Z0-9]+$/.test(gaMeasurementId || '');
 const organizationSchema = {'@context':'https://schema.org','@graph':[{'@type':'Organization','@id':'https://outlet3d.com.br/#organization',name:'Outlet 3D',url:'https://outlet3d.com.br/',logo:'https://outlet3d.com.br/branding/logo-outlet-3d-black.png',email:'contato@outlet3d.com.br',sameAs:['https://www.linkedin.com/in/erickonunes/']},{'@type':'WebSite','@id':'https://outlet3d.com.br/#website',url:'https://outlet3d.com.br/',name:'Outlet 3D',inLanguage:'pt-BR',publisher:{'@id':'https://outlet3d.com.br/#organization'}}]};
 ---
 <!doctype html>
@@ -40,6 +42,7 @@ const organizationSchema = {'@context':'https://schema.org','@graph':[{'@type':'
     <link rel="icon" type="image/svg+xml" href="/favicon.svg?v=2" />
     <link rel="shortcut icon" href="/favicon.svg?v=2" />
     {adsEnabled && <script is:inline async src={`https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=${adClient}`} crossorigin="anonymous"></script>}
+    {analyticsEnabled && <><script async src={`https://www.googletagmanager.com/gtag/js?id=${gaMeasurementId}`}></script><script is:inline define:vars={{ gaMeasurementId }}>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('js',new Date());gtag('config',gaMeasurementId,{anonymize_ip:true});</script></>}
   </head>
   <body>
     <a class="skip" href="#conteudo">Pular para o conteúdo</a>

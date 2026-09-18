@@ -1,8 +1,13 @@
 ---
-// Auto ads run from the site-wide AdSense script. This component is reserved for
-// an optional, manually created AdSense display unit once its slot ID is set.
+// The position is selected by the editorial templates. AdSense controls creative
+// selection and responsive size inside this reserved placement.
 const {slot}=Astro.props;
 const client=import.meta.env.PUBLIC_ADSENSE_CLIENT;
 const enabled=import.meta.env.PUBLIC_ADSENSE_ENABLED==='true' && /^ca-pub-\d{16}$/.test(client || '') && /^\d+$/.test(slot || '');
 ---
-{enabled && <aside aria-label="Publicidade" style="min-height:280px;margin:32px 0;text-align:center"><span style="font-size:12px;color:#6b736c">Publicidade</span><ins class="adsbygoogle" style="display:block" data-ad-client={client} data-ad-slot={slot} data-ad-format="auto" data-full-width-responsive="true"></ins><script is:inline>(window.adsbygoogle=window.adsbygoogle||[]).push({});</script></aside>}
+{enabled && <aside class="ad-slot" aria-label="Publicidade"><span>Publicidade</span><ins class="adsbygoogle" style="display:block" data-ad-client={client} data-ad-slot={slot} data-ad-format="auto" data-full-width-responsive="true"></ins><script is:inline>(window.adsbygoogle=window.adsbygoogle||[]).push({});</script></aside>}
+
+<style>
+  .ad-slot { clear: both; margin: clamp(2.25rem, 5vw, 4rem) 0; min-height: 250px; overflow: hidden; text-align: center; }
+  .ad-slot > span { display: block; margin-bottom: .65rem; color: #64708d; font-size: .68rem; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; }
+</style>
