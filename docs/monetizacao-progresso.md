@@ -91,8 +91,25 @@ Regras de dados: não inventar preço anterior, desconto, estoque, avaliação o
 5. Avaliar Amazon/Shopee; mais acessórios só se os dados pedirem.
 6. Depois: otimizar AdSense (testar Auto Ads, revisar consentimento), produto digital próprio, patrocínios/serviços.
 
+## 7b. Search Console e reescrita de artigos (21/11/2026)
+
+Dados lidos do Search Console do dono via Chrome (últimos 3 meses, até 18/11/2026): **50 cliques, 4,69 mil impressões, CTR 1,1%, posição média 31,5**; 436 consultas e 338 páginas com impressão. O site tem pouco tráfego; o ganho vem de converter melhor o que já aparece.
+
+Páginas com mais impressões (impressões | cliques | posição): aquarismo 1.141 | 6 | 8,4; moldes de gesso 216 | 3 | 9,4; home 189 | 8 | 44,9; vender STL 173 | 7 | 8,6; polimento 162 | 2 | 9,2; resina-2024 158 | 0 | 67,7; tipos-de-impressoras 142 | 0 | 67,2; anycubic 124 | 1 | 18; o-que-e-filamento 112 | 1 | 54,5; melhor-impressora-para-iniciantes 70 | 0 | 50,7.
+
+Feito:
+- `melhor-impressora-3d-para-iniciantes`: reescrito por completo (removida citação inventada de "engenheiro" e relatos em primeira pessoa sem teste; critérios, 3 modelos do catálogo, links para comparativos, kit e PLA vs PETG, FAQ). Caixa de produto aparece pelo título.
+- Título e meta description (descrições antigas eram cópia do 1º parágrafo) refeitos em 13 registros: aquarismo, gesso, vender STL, polimento, chocolate, gradiente de cores, filamento condutivo (3 URLs), retração PrusaSlicer, jardinagem, Anycubic, eixo Z. Corpo dos artigos não mudou.
+
+Achados / pendências:
+- Existem artigos duplicados (mesmo título em URLs diferentes: drones, indústria 3D, educação, velocidade, design de produtos, inovação 3D, filamento condutivo). Canibalização; consolidar com redirecionamento 301 em outra etapa.
+- Posição 50 a 83 em páginas de guia genérico (resina, tipos de impressora, como funciona, o que é filamento): candidatas à próxima reescrita com comparativo e caixa de produto.
+- Aquarismo (maior volume) não tem produto afiliado natural; avaliar acessórios de aquário ou deixar para AdSense.
+- Medir em 2 a 4 semanas se o CTR das 11 páginas com título novo subiu.
+
 ## 8. Registro de sessões
 
 Formato: data — o que foi feito — commits — pendências geradas. Acrescentar uma linha a cada sessão.
 
 - **2026-11-20/21** — Análise do site e plano de monetização; infraestrutura de caixas de produto; 13 produtos do Mercado Livre com links de afiliado e preços conferidos; 3 comparativos e o kit para iniciantes; rastreamento `affiliate_click` no GA4; verificação no ar de caixas, comparativos, kit e rastreamento. Commits `e8ab96b` a `5825dd9`. Pendências: dimensões no GA4, teste em celular, dados do Search Console.
+- **2026-11-21 (2)** — Search Console lido via Chrome; reescrita de `melhor-impressora-3d-para-iniciantes`; títulos e descrições de 13 registros melhorados. Commit: ver `git log`. Pendências: próxima leva (resina, tipos de impressora, o que é filamento), duplicados, medir CTR.
