@@ -8,7 +8,7 @@ const date=offer.checkedAt.split('-').reverse().join('/');
 ---
 <div class:list={['offer-price',{'offer-price-compact':compact}]}>
   {savings>0 && <div class="offer-reference"><del>{money(offer.previousPrice!)}</del>{offer.advertisedDiscount && <span class="offer-discount">{offer.advertisedDiscount}% OFF no anúncio</span>}</div>}
-  <strong class="offer-value">{money(offer.price)}</strong>
+  <strong class="offer-value">{money(offer.price)}</strong>{offer.paymentNote && <span class="offer-note"> {offer.paymentNote}</span>}
   {savings>0 && <p class="offer-saving">Economia de {money(savings)} sobre o valor de referência do anúncio.</p>}
   {!compact && offer.installments && <p class="offer-installments">Ou {offer.installments.count}x de {money(offer.installments.amount)} com juros · total {money(offer.installments.count*offer.installments.amount)}.</p>}
   <small>Oferta de {offer.seller} · consultada em <time datetime={offer.checkedAt}>{date}</time>. Preço e disponibilidade podem mudar; confirme no parceiro.</small>

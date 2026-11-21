@@ -1,0 +1,20 @@
+---
+import ProductOffer from './ProductOffer.astro';
+import {productsForArticle} from '../data/products';
+const {title}=Astro.props;
+const items=productsForArticle(title);
+---
+{items.length>0 && <aside class="article-products" aria-label="Recomendações relacionadas"><p class="article-products-label">RECOMENDADO PARA ESTE TEMA</p>{items.map(product=><article class="article-product"><a class="article-product-image" href={`/recomendados/${product.slug}/`}><img src={product.image} alt={product.name} width="160" height="160" loading="lazy"/></a><div><h3><a href={`/recomendados/${product.slug}/`}>{product.name}</a></h3><p>{product.summary}</p>{product.offer && <ProductOffer offer={product.offer} compact/>}<a class="article-product-cta" href={product.affiliateUrl} target="_blank" rel="sponsored noopener noreferrer">Ver oferta{product.marketplace ? ` no ${product.marketplace}` : ''} ↗</a></div></article>)}<small>Links de afiliado: a Outlet 3D pode receber comissão, sem custo extra para você. <a href="/transparencia/">Saiba mais</a>.</small></aside>}
+
+<style>
+  .article-products{clear:both;margin:3rem 0;padding:1.5rem;background:#e8edff;border-left:4px solid var(--orange)}
+  .article-products-label{margin:0 0 1rem;color:var(--electric);font-size:.7rem;font-weight:850;letter-spacing:.12em}
+  .article-product{display:grid;grid-template-columns:130px 1fr;gap:1.25rem;align-items:start;padding:1rem 0;border-top:1px solid #d4dff6}
+  .article-product:first-of-type{border-top:0}
+  .article-product-image img{width:130px;height:130px;object-fit:cover;background:#fff}
+  .article-product h3{margin:0 0 .4rem;font-size:1.15rem}
+  .article-product p{margin:0 0 .6rem;font-size:.9rem;color:var(--muted);line-height:1.6}
+  .article-product-cta{display:inline-block;margin-top:.6rem;background:var(--orange);color:var(--navy);padding:.7rem 1rem;font-weight:850;font-size:.9rem}
+  .article-products small{display:block;margin-top:.5rem;color:var(--muted);font-size:.75rem}
+  @media(max-width:600px){.article-product{grid-template-columns:1fr}}
+</style>
