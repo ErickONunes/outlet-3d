@@ -1,0 +1,44 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import ProductOffer from '../../components/ProductOffer.astro';
+import {products} from '../../data/products';
+import '../../styles/recommendations.css';
+import '../../styles/comparison.css';
+const slugs=['masterprint-pla-preto-1kg','masterprint-petg-preto-1kg'];
+const specs:Record<string,{dificuldade:string;resistencia:string;calor:string;temp:string;uso:string}>={
+  'masterprint-pla-preto-1kg':{dificuldade:'Fácil: boa opção para a primeira impressão',resistencia:'Rígido, mas mais quebradiço sob impacto',calor:'Baixa: amolece com calor (carro ao sol, por exemplo)',temp:'Bico em geral entre 190 e 220 °C; mesa entre 50 e 60 °C',uso:'Decoração, miniaturas, protótipos visuais, peças de uso leve'},
+  'masterprint-petg-preto-1kg':{dificuldade:'Intermediária: pede ajuste para evitar fiapos',resistencia:'Mais resistente a impacto e flexível que o PLA',calor:'Média: tolera mais calor e umidade que o PLA',temp:'Bico em geral entre 220 e 250 °C; mesa entre 70 e 80 °C',uso:'Peças funcionais, suportes, peças que sofrem esforço ou calor'},
+};
+const items=slugs.map(s=>products.find(p=>p.slug===s)).filter(p=>p&&p.status==='available'&&p.affiliateUrl) as typeof products;
+const title='PLA ou PETG: qual filamento escolher para impressão 3D?';
+const description='Compare PLA e PETG: facilidade, resistência, calor, temperaturas e usos. Veja qual filamento combina com o seu projeto.';
+const faq=[
+  {q:'Qual é melhor para iniciantes, PLA ou PETG?',a:'O PLA costuma ser mais fácil de imprimir e perdoa mais erros de calibração. O PETG exige ajuste de temperatura e retração para evitar fiapos.'},
+  {q:'PETG é mais resistente que PLA?',a:'Em geral sim: o PETG resiste melhor a impacto e a calor e é um pouco flexível, enquanto o PLA é rígido e mais quebradiço.'},
+  {q:'Posso usar o mesmo bico e a mesma mesa?',a:'Normalmente sim, mas a temperatura do bico e da mesa é diferente. Siga as faixas indicadas no rolo do fabricante.'},
+];
+const schemas=[{'@context':'https://schema.org','@type':'FAQPage',mainEntity:faq.map(f=>({'@type':'Question',name:f.q,acceptedAnswer:{'@type':'Answer',text:f.a}}))},{'@context':'https://schema.org','@type':'ItemList',name:'Comparativo PLA vs PETG',itemListElement:items.map((p,i)=>({'@type':'ListItem',position:i+1,name:p.name,url:`https://outlet3d.com.br/recomendados/${p.slug}/`}))}];
+---
+<Layout title={title} seo={{title:`${title} | Outlet 3D`,description,canonical:'https://outlet3d.com.br/comparativos/pla-vs-petg/',schemas}}>
+<main class="comparison-page">
+  <section class="comparison-hero"><p class="eyebrow"><span></span> COMPARATIVO</p><h1>PLA ou PETG? <em>Escolha pelo uso da peça.</em></h1><p>Os dois são filamentos FDM populares, mas se comportam de forma diferente. Veja o que muda na prática antes de comprar o próximo rolo.</p></section>
+  <section class="comparison-quick"><h2>Resposta rápida</h2><ul><li><strong>Primeira impressão, decoração, miniaturas:</strong> PLA.</li><li><strong>Peça que sofre esforço, calor ou umidade:</strong> PETG.</li><li><strong>Em dúvida:</strong> comece com PLA e passe ao PETG quando precisar de mais resistência.</li></ul></section>
+  <section class="comparison-table-wrap"><div class="comparison-table" role="table" aria-label="Comparativo PLA vs PETG" style="--cols:2">
+    <div class="ct-row ct-head" role="row"><span role="columnheader"></span>{items.map(p=><span role="columnheader">{p.name}</span>)}</div>
+    <div class="ct-row" role="row"><span role="rowheader">Dificuldade</span>{items.map(p=><span role="cell" data-label={p.name}>{specs[p.slug].dificuldade}</span>)}</div>
+    <div class="ct-row" role="row"><span role="rowheader">Resistência</span>{items.map(p=><span role="cell" data-label={p.name}>{specs[p.slug].resistencia}</span>)}</div>
+    <div class="ct-row" role="row"><span role="rowheader">Calor e umidade</span>{items.map(p=><span role="cell" data-label={p.name}>{specs[p.slug].calor}</span>)}</div>
+    <div class="ct-row" role="row"><span role="rowheader">Temperaturas típicas</span>{items.map(p=><span role="cell" data-label={p.name}>{specs[p.slug].temp}</span>)}</div>
+    <div class="ct-row" role="row"><span role="rowheader">Usos comuns</span>{items.map(p=><span role="cell" data-label={p.name}>{specs[p.slug].uso}</span>)}</div>
+    <div class="ct-row" role="row"><span role="rowheader">Oferta</span>{items.map(p=><span role="cell" data-label={p.name}>{p.offer && <ProductOffer offer={p.offer} compact/>}</span>)}</div>
+    <div class="ct-row" role="row"><span role="rowheader"></span>{items.map(p=><span role="cell"><a class="ct-buy" href={p.affiliateUrl} target="_blank" rel="sponsored noopener noreferrer">Ver oferta no Mercado Livre ↗</a><a class="ct-more" href={`/recomendados/${p.slug}/`}>Ver detalhes</a></span>)}</div>
+  </div></section>
+  <section class="comparison-text">
+    <h2>Perguntas frequentes</h2>
+    {faq.map(f=><><h3>{f.q}</h3><p>{f.a}</p></>)}
+    <h2>Como escolhemos</h2><p>Os rolos são da Masterprint, marca nacional com muitas avaliações no Mercado Livre, ambos em preto, 1,75 mm e 1 kg. As faixas de temperatura são típicas do tipo de material e variam por fabricante e cor: siga sempre o que está no rolo. Não fizemos testes próprios de impressão. Preços mudam com frequência; confira o valor atual antes de comprar.</p>
+    <p class="comparison-note">A Outlet 3D pode receber comissão por compras feitas pelos links, sem custo extra para você. <a href="/transparencia/">Saiba mais</a>.</p>
+    <p><a href="/comparativos/impressoras-3d/">Comparativo de impressoras 3D ↗</a> · <a href="/recomendados/">Todas as recomendações ↗</a></p>
+  </section>
+</main>
+</Layout>
