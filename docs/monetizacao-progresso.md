@@ -107,9 +107,22 @@ Achados / pendências:
 - Aquarismo (maior volume) não tem produto afiliado natural; avaliar acessórios de aquário ou deixar para AdSense.
 - Medir em 2 a 4 semanas se o CTR das 11 páginas com título novo subiu.
 
+## 7c. Auditoria do AdSense (21/11/2026)
+
+Lido no painel do dono via Chrome (somente leitura; nada foi alterado no painel):
+- Últimos 28 dias: 3.466 visualizações de página, RPM de página US$ 0,34, 4.205 impressões de anúncio, 33 cliques, CPC US$ 0,04, CTR 0,95%. Receita estimada na ordem de **US$ 1 por mês**; páginas vistas caíram 47% contra os 28 dias anteriores.
+- Para `outlet3d.com.br`: **Anúncios automáticos e otimização automática estão DESATIVADOS**. Só a unidade manual (slot `8802772958`) aparece: após o 2º subtítulo dos artigos (`[...path].astro`), na home e nas listas de categoria. O espaço reservado (`min-height: 250px`) evita salto de layout.
+- Alerta no painel: "ação necessária: verificar algo na conta para pagamentos". Pendência do dono (Google Payments); sem isso a receita não é paga.
+- `ads.txt` correto. Não há banner de consentimento no site; para visitantes do EEE/Reino Unido o Google exige CMP certificado (Privacidade e mensagens), mas o público do site é brasileiro. Revisar se o tráfego internacional crescer.
+
+Decisão: **nenhuma mudança de código**. Com ~3,5 mil páginas vistas/mês, anúncios extras renderiam centavos e piorariam a leitura e a conversão dos links de afiliado. Páginas comerciais (comparativos, kit, recomendados) continuam sem anúncio, de propósito. Reavaliar quando as páginas vistas passarem de ~30 mil/mês.
+
+Ações do dono (opcionais): resolver o alerta de pagamentos; se quiser testar anúncios automáticos, ativar só os formatos dentro da página e desmarcar âncora e vinheta (intrusivos).
+
 ## 8. Registro de sessões
 
 Formato: data — o que foi feito — commits — pendências geradas. Acrescentar uma linha a cada sessão.
 
 - **2026-11-20/21** — Análise do site e plano de monetização; infraestrutura de caixas de produto; 13 produtos do Mercado Livre com links de afiliado e preços conferidos; 3 comparativos e o kit para iniciantes; rastreamento `affiliate_click` no GA4; verificação no ar de caixas, comparativos, kit e rastreamento. Commits `e8ab96b` a `5825dd9`. Pendências: dimensões no GA4, teste em celular, dados do Search Console.
 - **2026-11-21 (2)** — Search Console lido via Chrome; reescrita de `melhor-impressora-3d-para-iniciantes`; títulos e descrições de 13 registros melhorados. Commit: ver `git log`. Pendências: próxima leva (resina, tipos de impressora, o que é filamento), duplicados, medir CTR.
+- **2026-11-21 (3)** — Auditoria do AdSense (somente leitura): receita ~US$ 1/mês, auto ads desativados, alerta de pagamento. Sem mudança de código. Pendência do dono: alerta de pagamentos.
