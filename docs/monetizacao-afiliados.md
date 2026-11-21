@@ -23,3 +23,8 @@ Cada recomendação deve informar que pode gerar comissão e apontar para `/tran
 ## Links internos nos artigos
 
 Cada artigo agora apresenta anterior, próximo e conteúdos da mesma categoria. Isso cria caminhos de descoberta para leitores e facilita o rastreamento de tópicos pelos mecanismos de busca. Mantenha títulos de links descritivos; nunca use links genéricos como “clique aqui”.
+
+
+## Progresso e continuidade
+
+O estado atual (catálogo, páginas de comparação, kit, rastreamento), o procedimento para cadastrar produtos e os próximos passos estão em [monetizacao-progresso.md](monetizacao-progresso.md). Registre toda mudança nesse arquivo.

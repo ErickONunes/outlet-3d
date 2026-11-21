@@ -45,6 +45,7 @@ npm run preview
 - [Arquitetura e conteúdo](docs/arquitetura.md)
 - [Operação editorial e SEO](docs/operacao-editorial.md)
 - [Curadoria de afiliados](docs/curadoria-afiliados.md)
+- [Monetização: progresso e como continuar](docs/monetizacao-progresso.md)
 - [Publicação e checklist](docs/publicacao.md)
 - [Relatório de migração](migration/RELATORIO.md)
 - [Resultado do piloto](migration/pilot/RESULTADO.md)
