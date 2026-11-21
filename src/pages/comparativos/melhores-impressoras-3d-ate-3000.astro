@@ -1,0 +1,40 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import ProductOffer from '../../components/ProductOffer.astro';
+import {products} from '../../data/products';
+import '../../styles/recommendations.css';
+import '../../styles/comparison.css';
+const LIMIT=3000;
+const specs:Record<string,{area:string;destaque:string;limite:string;perfil:string}>={
+  'creality-ender-3-v3-se':{area:'220 × 220 × 250 mm',destaque:'Nivelamento automático (CR Touch), extrusora direta, até 250 mm/s anunciados',limite:'Sem Wi-Fi e sem multicolor automático',perfil:'Quem tem orçamento menor e quer aprender'},
+  'creality-ender-3-v3-ke':{area:'220 × 220 × 240 mm',destaque:'Até 500 mm/s anunciados, autonivelamento e Wi-Fi',limite:'Sem troca automática de cor',perfil:'Quem quer velocidade e recursos sem pagar o preço de uma multicolorida'},
+  'elegoo-neptune-4':{area:'225 × 225 × 265 mm',destaque:'Firmware Klipper e boa altura de impressão; loja oficial no anúncio',limite:'Sem extrusora direta; sem multicolor automático',perfil:'Quem quer uma FDM rápida e aberta com preço menor que a Pro'},
+  'elegoo-neptune-4-pro':{area:'225 × 225 × 265 mm',destaque:'Extrusora direta e até 500 mm/s anunciados',limite:'Sem multicolor automático',perfil:'Quem quer mais velocidade e área, e aceita investir um pouco mais'},
+};
+const items=Object.keys(specs).map(s=>products.find(p=>p.slug===s)).filter(p=>p&&p.status==='available'&&p.affiliateUrl&&p.offer&&p.offer.price<=LIMIT).sort((a,b)=>a!.offer!.price-b!.offer!.price) as typeof products;
+const title='Melhores impressoras 3D até R$ 3.000: comparativo de 4 opções';
+const description='Compare Ender-3 V3 SE, Ender-3 V3 KE, Elegoo Neptune 4 e Neptune 4 Pro: área de impressão, recursos, limitações e para quem cada uma serve.';
+const schema={'@context':'https://schema.org','@type':'ItemList',name:'Impressoras 3D até R$ 3.000',itemListElement:items.map((p,i)=>({'@type':'ListItem',position:i+1,name:p.name,url:`https://outlet3d.com.br/recomendados/${p.slug}/`}))};
+---
+<Layout title={title} seo={{title:`${title} | Outlet 3D`,description,canonical:'https://outlet3d.com.br/comparativos/melhores-impressoras-3d-ate-3000/',schemas:[schema]}}>
+<main class="comparison-page">
+  <section class="comparison-hero"><p class="eyebrow"><span></span> COMPARATIVO</p><h1>Melhores impressoras 3D <em>até R$ 3.000.</em></h1><p>Quatro impressoras FDM com preço de entrada a intermediário. Veja o que muda entre elas e qual faz mais sentido para o seu orçamento.</p></section>
+  <section class="comparison-quick"><h2>Resposta rápida</h2><ul><li><strong>Menor preço para começar:</strong> Creality Ender-3 V3 SE.</li><li><strong>Mais velocidade e Wi-Fi sem gastar muito:</strong> Creality Ender-3 V3 KE.</li><li><strong>FDM aberta com Klipper:</strong> Elegoo Neptune 4.</li><li><strong>Extrusora direta e mais velocidade:</strong> Elegoo Neptune 4 Pro.</li></ul></section>
+  <section class="comparison-table-wrap"><div class="comparison-table" role="table" aria-label="Impressoras 3D até R$ 3.000" style={`--cols:${items.length}`}>
+    <div class="ct-row ct-head" role="row"><span role="columnheader"></span>{items.map(p=><span role="columnheader">{p.name}</span>)}</div>
+    <div class="ct-row" role="row"><span role="rowheader">Área de impressão</span>{items.map(p=><span role="cell" data-label={p.name}>{specs[p.slug].area}</span>)}</div>
+    <div class="ct-row" role="row"><span role="rowheader">Destaques</span>{items.map(p=><span role="cell" data-label={p.name}>{specs[p.slug].destaque}</span>)}</div>
+    <div class="ct-row" role="row"><span role="rowheader">Limitações</span>{items.map(p=><span role="cell" data-label={p.name}>{specs[p.slug].limite}</span>)}</div>
+    <div class="ct-row" role="row"><span role="rowheader">Ideal para</span>{items.map(p=><span role="cell" data-label={p.name}>{specs[p.slug].perfil}</span>)}</div>
+    <div class="ct-row" role="row"><span role="rowheader">Oferta</span>{items.map(p=><span role="cell" data-label={p.name}>{p.offer && <ProductOffer offer={p.offer} compact/>}</span>)}</div>
+    <div class="ct-row" role="row"><span role="rowheader"></span>{items.map(p=><span role="cell"><a class="ct-buy" href={p.affiliateUrl} target="_blank" rel="sponsored noopener noreferrer">Ver oferta no Mercado Livre ↗</a><a class="ct-more" href={`/recomendados/${p.slug}/`}>Ver detalhes</a></span>)}</div>
+  </div></section>
+  <section class="comparison-text">
+    <h2>Como escolher nessa faixa</h2>
+    <p>Todas são FDM, ou seja, imprimem em filamento como PLA e PETG. A diferença está em velocidade, extrusora e recursos. Se o orçamento é curto, a Ender-3 V3 SE já resolve o começo; se você imprime com frequência, mais velocidade e Wi-Fi podem valer a diferença. Nenhuma delas troca de cor automaticamente: para multicolor, veja o <a href="/comparativos/impressoras-3d/">comparativo com Bambu Lab A1 e resina</a>.</p>
+    <h2>Como escolhemos</h2><p>Selecionamos modelos com boa presença no Mercado Livre e descrevemos apenas características que constam nos anúncios e no fabricante. Não fizemos testes próprios de impressão. Os preços consideram o valor exibido na data da consulta (alguns no Pix) e mudam com frequência: confira o valor atual antes de comprar. Só entram aqui ofertas até R$ 3.000.</p>
+    <p class="comparison-note">A Outlet 3D pode receber comissão por compras feitas pelos links, sem custo extra para você. <a href="/transparencia/">Saiba mais</a>.</p>
+    <p><a href="/comparativos/pla-vs-petg/">PLA ou PETG? ↗</a> · <a href="/comparativos/impressoras-3d/">Comparativo de impressoras ↗</a> · <a href="/recomendados/">Todas as recomendações ↗</a></p>
+  </section>
+</main>
+</Layout>
