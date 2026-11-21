@@ -1,0 +1,45 @@
+---
+import Layout from '../layouts/Layout.astro';
+import ProductOffer from '../components/ProductOffer.astro';
+import {products} from '../data/products';
+import '../styles/recommendations.css';
+import '../styles/comparison.css';
+import '../styles/starter-kit.css';
+const get=(slug:string)=>products.find(p=>p.slug===slug&&p.status==='available'&&p.affiliateUrl&&p.offer);
+const essenciais=[
+  {slug:'creality-ender-3-v3-se',papel:'Impressora',porque:'Entrada com nivelamento automático e extrusora direta: menos ajuste para a primeira peça.'},
+  {slug:'masterprint-pla-preto-1kg',papel:'Filamento',porque:'PLA é o material mais simples para começar. Um rolo de 1 kg rende muitas peças pequenas.'},
+  {slug:'kit-47-ferramentas-impressao-3d',papel:'Ferramentas',porque:'Alicate, espátulas e estiletes para tirar a peça da mesa e remover suportes.'},
+].map(i=>({...i,product:get(i.slug)})).filter(i=>i.product);
+const extras=[
+  {slug:'paquimetro-digital-ocio-150mm',papel:'Medição',porque:'Confere se a peça saiu na medida e ajuda a acertar encaixes.'},
+  {slug:'graxa-lubrificante-impressora-3d',papel:'Manutenção',porque:'Para quando os eixos pedirem lubrificação. Confira o manual da sua impressora.'},
+].map(i=>({...i,product:get(i.slug)})).filter(i=>i.product);
+const money=(v:number)=>v.toLocaleString('pt-BR',{style:'currency',currency:'BRL'});
+const totalEssenciais=essenciais.reduce((s,i)=>s+i.product!.offer!.price,0);
+const totalExtras=extras.reduce((s,i)=>s+i.product!.offer!.price,0);
+const title='Kit para iniciantes em impressão 3D: o que comprar para começar';
+const description='Lista enxuta para começar na impressão 3D: impressora de entrada, filamento PLA, ferramentas e dois extras úteis, com preços consultados.';
+const schema={'@context':'https://schema.org','@type':'ItemList',name:'Kit para iniciantes em impressão 3D',itemListElement:[...essenciais,...extras].map((i,k)=>({'@type':'ListItem',position:k+1,name:i.product!.name,url:`https://outlet3d.com.br/recomendados/${i.slug}/`}))};
+const row=(i:any)=>i;
+---
+<Layout title={title} seo={{title:`${title} | Outlet 3D`,description,canonical:'https://outlet3d.com.br/kit-para-iniciantes/',schemas:[schema]}}>
+<main class="comparison-page starter-kit">
+  <section class="comparison-hero"><p class="eyebrow"><span></span> KIT PARA INICIANTES</p><h1>O que comprar para <em>começar na impressão 3D.</em></h1><p>Uma lista enxuta, sem exagero: o essencial para a primeira peça e dois extras que valem a pena depois.</p></section>
+  <section class="kit-section"><h2>O essencial</h2>
+    <ol class="kit-list">{essenciais.map(i=><li class="kit-item"><img src={i.product!.image} alt={i.product!.name} width="120" height="120" loading="lazy"/><div><span class="kit-role">{i.papel}</span><h3><a href={`/recomendados/${i.slug}/`}>{i.product!.name}</a></h3><p>{i.porque}</p><ProductOffer offer={i.product!.offer!} compact/><a class="ct-buy kit-buy" href={i.product!.affiliateUrl} target="_blank" rel="sponsored noopener noreferrer">Ver oferta no Mercado Livre ↗</a></div></li>)}</ol>
+    <p class="kit-total">Soma dos preços consultados (essencial): <strong>{money(totalEssenciais)}</strong></p>
+  </section>
+  <section class="kit-section"><h2>Extras úteis</h2>
+    <ol class="kit-list">{extras.map(i=><li class="kit-item"><img src={i.product!.image} alt={i.product!.name} width="120" height="120" loading="lazy"/><div><span class="kit-role">{i.papel}</span><h3><a href={`/recomendados/${i.slug}/`}>{i.product!.name}</a></h3><p>{i.porque}</p><ProductOffer offer={i.product!.offer!} compact/><a class="ct-buy kit-buy" href={i.product!.affiliateUrl} target="_blank" rel="sponsored noopener noreferrer">Ver oferta no Mercado Livre ↗</a></div></li>)}</ol>
+    <p class="kit-total">Soma dos extras: <strong>{money(totalExtras)}</strong> · Tudo junto: <strong>{money(totalEssenciais+totalExtras)}</strong></p>
+  </section>
+  <section class="comparison-text">
+    <h2>Como usar esta lista</h2>
+    <p>Os preços são os exibidos no Mercado Livre na data da consulta, de vendedores diferentes, e a impressora aparece no preço do Pix. A soma é só uma referência: frete, parcelamento e promoções mudam o valor final, então confira cada oferta antes de comprar. Nenhum item foi testado por nós.</p>
+    <h2>E depois?</h2>
+    <p>Quando quiser mais velocidade ou multicolor, veja o <a href="/comparativos/melhores-impressoras-3d-ate-3000/">comparativo de impressoras até R$ 3.000</a> e o <a href="/comparativos/impressoras-3d/">comparativo com Bambu Lab e resina</a>. Para escolher material, leia <a href="/comparativos/pla-vs-petg/">PLA ou PETG</a>. Se quiser entender o processo antes, comece pelo guia <a href="/artigos/primeira-impressao-3d/">da ideia à primeira impressão</a>.</p>
+    <p class="comparison-note">A Outlet 3D pode receber comissão por compras feitas pelos links, sem custo extra para você. <a href="/transparencia/">Saiba mais</a>.</p>
+  </section>
+</main>
+</Layout>
