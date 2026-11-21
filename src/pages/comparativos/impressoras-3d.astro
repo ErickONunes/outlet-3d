@@ -1,0 +1,37 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import ProductOffer from '../../components/ProductOffer.astro';
+import {products} from '../../data/products';
+import '../../styles/recommendations.css';
+import '../../styles/comparison.css';
+const slugs=['creality-ender-3-v3-se','bambu-lab-a1-combo-ams-lite','elegoo-mars-5-ultra'];
+const specs:Record<string,{tech:string;area:string;highlight:string;cuidado:string}>={
+  'creality-ender-3-v3-se':{tech:'FDM (filamento)',area:'220 × 220 × 250 mm',highlight:'Nivelamento automático (CR Touch), extrusora direta, até 250 mm/s anunciados',cuidado:'Uma cor por vez; exige alguma calibração e ajustes'},
+  'bambu-lab-a1-combo-ams-lite':{tech:'FDM (filamento)',area:'256 × 256 × 256 mm',highlight:'AMS Lite para até 4 filamentos, calibrações automáticas, até 500 mm/s anunciados',cuidado:'Investimento maior que uma impressora de entrada'},
+  'elegoo-mars-5-ultra':{tech:'Resina (MSLA)',area:'Tela 9K monocromática de 7"',highlight:'Alto nível de detalhe em miniaturas e peças pequenas',cuidado:'Exige luvas, ventilação, lavagem e cura; resina tem custo e descarte próprios'},
+};
+const items=slugs.map(s=>products.find(p=>p.slug===s)).filter(p=>p&&p.status==='available'&&p.affiliateUrl) as typeof products;
+const title='Melhor impressora 3D: comparativo Ender-3 V3 SE, Bambu Lab A1 e Elegoo Mars 5 Ultra';
+const description='Compare três impressoras 3D populares no Brasil: tecnologia, área de impressão, ponto forte, cuidados e para quem cada uma faz sentido.';
+const schema={'@context':'https://schema.org','@type':'ItemList',name:'Comparativo de impressoras 3D',itemListElement:items.map((p,i)=>({'@type':'ListItem',position:i+1,name:p.name,url:`https://outlet3d.com.br/recomendados/${p.slug}/`}))};
+---
+<Layout title={title} seo={{title:`${title} | Outlet 3D`,description,canonical:'https://outlet3d.com.br/comparativos/impressoras-3d/',schemas:[schema]}}>
+<main class="comparison-page">
+  <section class="comparison-hero"><p class="eyebrow"><span></span> COMPARATIVO</p><h1>Qual impressora 3D escolher? <em>Três opções lado a lado.</em></h1><p>Uma de entrada, uma multicolorida e uma de resina. Veja o que cada uma entrega, o que exige de você e para quem faz mais sentido.</p></section>
+  <section class="comparison-quick"><h2>Resposta rápida</h2><ul><li><strong>Orçamento menor, quer aprender:</strong> Creality Ender-3 V3 SE.</li><li><strong>Quer cores e menos ajustes:</strong> Bambu Lab A1 Combo com AMS Lite.</li><li><strong>Quer detalhe em miniaturas:</strong> Elegoo Mars 5 Ultra (resina).</li></ul></section>
+  <section class="comparison-table-wrap"><div class="comparison-table" role="table" aria-label="Comparativo de impressoras 3D">
+    <div class="ct-row ct-head" role="row"><span role="columnheader"></span>{items.map(p=><span role="columnheader">{p.name}</span>)}</div>
+    <div class="ct-row" role="row"><span role="rowheader">Tecnologia</span>{items.map(p=><span role="cell" data-label={p.name}>{specs[p.slug].tech}</span>)}</div>
+    <div class="ct-row" role="row"><span role="rowheader">Área de impressão</span>{items.map(p=><span role="cell" data-label={p.name}>{specs[p.slug].area}</span>)}</div>
+    <div class="ct-row" role="row"><span role="rowheader">Ponto forte</span>{items.map(p=><span role="cell" data-label={p.name}>{specs[p.slug].highlight}</span>)}</div>
+    <div class="ct-row" role="row"><span role="rowheader">Cuidados</span>{items.map(p=><span role="cell" data-label={p.name}>{specs[p.slug].cuidado}</span>)}</div>
+    <div class="ct-row" role="row"><span role="rowheader">Ideal para</span>{items.map(p=><span role="cell" data-label={p.name}>{p.idealFor}</span>)}</div>
+    <div class="ct-row" role="row"><span role="rowheader">Oferta</span>{items.map(p=><span role="cell" data-label={p.name}>{p.offer && <ProductOffer offer={p.offer} compact/>}</span>)}</div>
+    <div class="ct-row" role="row"><span role="rowheader"></span>{items.map(p=><span role="cell" data-label={p.name}><a class="ct-buy" href={p.affiliateUrl} target="_blank" rel="sponsored noopener noreferrer">Ver oferta no Mercado Livre ↗</a><a class="ct-more" href={`/recomendados/${p.slug}/`}>Ver detalhes</a></span>)}</div>
+  </div></section>
+  <section class="comparison-text"><h2>FDM ou resina?</h2><p>FDM usa filamento (PLA, PETG, ABS) e atende peças funcionais, decorativas e protótipos com custo e manutenção menores. Resina entrega mais detalhe em peças pequenas, mas exige luvas, ventilação, lavagem e cura, e a resina líquida precisa de cuidado no manuseio e no descarte. Para quem está começando, FDM costuma ser o caminho mais simples.</p>
+  <h2>Como escolhemos</h2><p>Selecionamos modelos com boa presença no Mercado Livre e descrevemos apenas características que constam nos anúncios e no fabricante. Não fizemos testes próprios de impressão. Preços mudam com frequência; confira o valor atual antes de comprar.</p>
+  <p class="comparison-note">A Outlet 3D pode receber comissão por compras feitas pelos links, sem custo extra para você. <a href="/transparencia/">Saiba mais</a>.</p>
+  <p><a href="/recomendados/">Ver todas as recomendações ↗</a> · <a href="/artigos/primeira-impressao-3d/">Guia: da ideia à primeira impressão ↗</a></p></section>
+</main>
+</Layout>
